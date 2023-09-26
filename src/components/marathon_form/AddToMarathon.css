@@ -1,0 +1,19 @@
+.AddToMarathon__form{
+    margin: 20px;
+}
+
+.AddToMarathon__buttons button {
+    height: 33px;
+    width: 100px;
+    color: #636363;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid #f1f1f1;
+    background-color: #ffffff;
+}
+
+.AddToMarathon__buttons button:hover {
+    border: 1px solid #c3c3c3;
+    background-color: #f1f1f1;
+}

@@ -1,0 +1,51 @@
+.rdw-editor-wrapper {
+    min-height: 500px;
+    border: 1px solid #f1f1f1;
+}
+
+.editor {
+    margin: 10px;
+}
+
+.AddRecipe__form {
+    margin: 20px;
+}
+
+.AddRecipe__form label,
+.AddRecipe__form input {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.AddRecipe__form input {
+    border: 1px solid #f1f1f1;
+    height: 33px;
+    width: 100%;
+}
+
+.AddRecipe__form label {
+    text-align: left;
+    color: #636363;
+    font-style: italic;
+}
+
+.AddRecipe__buttons {
+    margin-top: 20px;
+}
+
+.AddRecipe__buttons button {
+    height: 33px;
+    width: 100px;
+    color: #636363;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid #f1f1f1;
+    background-color: #ffffff;
+}
+
+.AddRecipe__buttons button:hover {
+    border: 1px solid #c3c3c3;
+    background-color: #f1f1f1;
+}

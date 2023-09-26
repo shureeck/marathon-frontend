@@ -1,0 +1,27 @@
+.InputCom__label,
+.InputCom__input {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.InputCom__label{
+    color: #636363;
+    font-style: italic;
+    text-align: left;
+}
+
+.InputCom__input{
+    border: solid 1px #f1f1f1;
+    height: 33px;
+    font-size: 18px;
+    text-indent: 10px;
+    width: 300px;
+
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+    height: 33px;
+    }
