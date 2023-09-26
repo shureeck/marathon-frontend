@@ -26,13 +26,13 @@ const AddToMarathon = () => {
         };
 
         axios.post('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/', marathon)
-        .then(response => {
-            console.log(response.data);
-            navigate(`/`, {replace:true});
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            .then(response => {
+                console.log(response.data);
+                navigate(`/`, { replace: true });
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
         console.log(marathon);
     }
@@ -44,7 +44,7 @@ const AddToMarathon = () => {
             let idParam = queryParameters.get('id');
             let tittleParam = queryParameters.get('tittle');
             setFood(idParam);
-            setDishes(JSON.parse(`{"${idParam}":"${tittleParam}"}`));
+            setDishes({ [idParam]: tittleParam });
         } else {
             axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/dishes')
                 .then(response => {
