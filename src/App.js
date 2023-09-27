@@ -13,15 +13,18 @@ const menu = [
   {name: 'Марафон', path:'/'},
   {name: 'Всi рецепти', path:'/', disabled: true},
   {name: 'Недоданi до меню', path:'/', disabled: true},
-  {name: 'Новий рецепт', path:'/recipe'},
-  {name: 'Додати до меню', path:'/menu'}
+ // {name: 'Новий рецепт', path:'/recipe'},
+ // {name: 'Додати до меню', path:'/menu'}
+
+ //<Route path="/recipe" element={<AddRecipe />} />
+ //          <Route path="/menu" element={<AddToMarathon />} />
   
 ];
 
   return (
     <div className="App">
       <div className="header">
-        <h1>МАРАФОН СХУДНЕННЯ</h1>
+        <h1>BIZZY KITCHEN</h1>
       </div>
       <div className='MenuBar'>
         <Menu items={menu}></Menu>
@@ -29,8 +32,6 @@ const menu = [
       <div className="Appbody">
         <Routes>
           <Route path='/cooking' element={<Recipe />} />
-          <Route path="/recipe" element={<AddRecipe />} />
-          <Route path="/menu" element={<AddToMarathon />} />
           <Route path="/" element={<Accordion />} />
         </Routes>
       </div>
