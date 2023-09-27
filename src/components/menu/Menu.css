@@ -1,0 +1,27 @@
+.Menu{
+    margin-top: 10px;
+    width: 100vw;
+    height: 43px;
+    border-bottom: 1px solid rgba(90, 116, 148, 0.4) ;
+}
+
+.menu__buttons {
+    height: 33px;
+    width: 100px;
+    color: #636363;
+    font-weight: bold;
+    border: 1px solid #f1f1f1;
+    background-color: #ffffff;
+    vertical-align: top;
+}
+
+.menu__buttons:hover {
+    border: 1px solid #c3c3c3;
+    background-color: #f1f1f1;
+}
+
+.menu__buttons:disabled {
+    border: 1px solid #f1f1f1;
+    background-color: #f1f1f1;
+    color: #9a9a9a;
+}
