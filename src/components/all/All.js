@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Grafic from '../accordion/grafic/Grafic';
 import './All.css'
+import axios from 'axios';
 const value = JSON.parse(`[{"name": "С","food": [{"Торт \\"Мурашник\\"": "44"},{"Сливовий пиріг": "43"},{"Сирний пиріг": "45"}]},
 {"name": "В","food": [{"Перекус": "20"}]},
 {"name": "Ц","food": [{"Перекус": "20"}]},
@@ -12,7 +13,21 @@ const value = JSON.parse(`[{"name": "С","food": [{"Торт \\"Мурашник
 {"name": "Я","food": [{"Фрукти": "17"},{"Пастила": "18"}]}]`);
 
 const All = (props) => {
+    const [value, setValue] = useState([]);
     const [data, setData] = useState(value);
+
+    useEffect(() => {
+        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/all')
+            .then(response => {
+                console.log(response.data);
+                setValue(response.data);
+                setData(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
+    
     const onSourceChageHandler = (event) => {
         const search = event.target.value.toLowerCase();
         if (typeof search === 'undefined' || search.length === 0) {
