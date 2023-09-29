@@ -28,13 +28,13 @@ html {
 .MenuBar{
   position: absolute;
   top: 100px;
-  height: 33px;
+  height: 53px;
 }
 
 .Appbody {
   position: absolute;
   display: table;
-  top: 133px;
+  top: 153px;
   bottom: 25px;
   width: 100%;
   height: calc(100%-125px);
