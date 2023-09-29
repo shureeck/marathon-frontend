@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Grafic.css'
 import { useNavigate } from 'react-router-dom';
 
@@ -9,10 +8,7 @@ const Grafic = (props) => {
     }
 
     let clazz = 'grafic info';
-    /* if (typeof props.className !== undefined){
-         clazz=`${clazz} ${props.className}`;
-     }*/
-    const [data, setData] = useState(props.data);
+    const data = props.data;
     const food = data.food;
     const foodLinks = food.map((item) => {
         return <div className='grafic__a'><a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a></div>

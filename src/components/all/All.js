@@ -18,30 +18,13 @@ const All = (props) => {
         if (typeof search === 'undefined' || search.length === 0) {
             setData(value);
         } else {
-            let newData = value.filter((tmp) => { return tmp.name.toLowerCase() === search.charAt(0) });
-            console.log(newData.length)
+            let newData = structuredClone(value);
+            newData = newData.filter((tmp) => { return tmp.name.toLowerCase() === search.charAt(0) });
             if (newData.length > 0) {
-                newData.food = newData[0].food.filter((tmp) => { return Object.keys(tmp)[0].toLocaleLowerCase().startsWith(search) });
+                newData[0].food = newData[0].food.filter((tmp) => { return Object.keys(tmp)[0].toLocaleLowerCase().startsWith(search) });
             }
-            console.log(newData)
             setData(newData);
-            console.log(data)
         }
-        /*
-         else {
-            setData(data.filter((letter) => {
-                if (letter.name.toLowerCase() === search.charAt(0).toLowerCase()) {
-                    return letter.food.filter((a) => {
-                        console.log(Object.keys(a)[0].toLowerCase().startsWith(search));
-                        return
-                        Object.keys(a)[0].toLowerCase().startsWith(search);
-                    });
-        
-                } else {
-                    return false;
-                }
-            }))
-        }*/
 
     }
 
