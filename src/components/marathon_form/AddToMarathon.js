@@ -32,11 +32,11 @@ const AddToMarathon = () => {
             })
             .catch(error => {
                 console.error(error);
+                alert(error.response.data);
             });
 
         console.log(marathon);
     }
-
 
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);

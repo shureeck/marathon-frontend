@@ -18,10 +18,18 @@
     margin-bottom: 10px;
 }
 
-.AddRecipe__form input {
+
+
+.AddRecipe__input {
     border: 1px solid #f1f1f1;
     height: 33px;
     width: 100%;
+    padding-left: 10px;
+}
+
+.AddRecipe__error{
+    border: 1px solid #ff5b5b;
+
 }
 
 .AddRecipe__form label {
@@ -49,3 +57,4 @@
     border: 1px solid #c3c3c3;
     background-color: #f1f1f1;
 }
+

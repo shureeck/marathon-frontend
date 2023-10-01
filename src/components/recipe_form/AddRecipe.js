@@ -7,10 +7,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 const AddRecipe = () => {
     const navigate = useNavigate();
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [tittle, setTittle] = useState();
+    const[errorClass, setError] = useState('AddRecipe__input');
 
     const onSaveClick = () => {
         const value = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -24,6 +26,8 @@ const AddRecipe = () => {
             .catch(error => {
                 console.log("Error")
                 console.error(error);
+                alert(error.response.data);
+                setError(`${errorClass} AddRecipe__error`)
             });
         console.log(recipe);
     }
@@ -36,7 +40,7 @@ const AddRecipe = () => {
     return (<div className='AddRecipe'>
         <form className='AddRecipe__form'>
             <label>Назва страви</label>
-            <input id='name' value={tittle} onChange={onTittleChange}></input>
+            <input id='name' className={errorClass} value={tittle} onChange={onTittleChange}></input>
             <label>Рецепт</label>
             <div>
                 <Editor editorClassName="editor" toolbar={tools} editorState={editorState} onEditorStateChange={setEditorState}></Editor>
