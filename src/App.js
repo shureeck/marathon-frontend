@@ -21,8 +21,8 @@ function App() {
     { name: 'Марафон', path: '/' },
     { name: 'Всi рецепти', path: '/all' },
     { name: 'Недоданi до меню', path: '/', disabled: true },
-     {name: 'Новий рецепт', path:'/recipe'},
-    {name: 'Додати до меню', path:'/menu'}
+ //    {name: 'Новий рецепт', path:'/recipe'},
+  //  {name: 'Додати до меню', path:'/menu'}
 
     //<Route path="/recipe" element={<AddRecipe />} />
     //          <Route path="/menu" element={<AddToMarathon />} />
@@ -42,8 +42,6 @@ function App() {
           <Route path='/cooking' element={<Recipe />} />
           <Route path='/' element={<Accordion />} />
           <Route path='/all' element={<All />} />
-          <Route path="/recipe" element={<AddRecipe />} />
-         <Route path="/menu" element={<AddToMarathon />} />
         </Routes>
       </div>
       <div className="footer" hidden><p>Developed by GLANCE.CORP in 2023</p></div>
