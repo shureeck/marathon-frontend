@@ -100,7 +100,7 @@ div.grafic__food {
 }
 
 .grafic__input:checked~.grafic__h3~div.grafic__food {
-  max-height: 100px;
+  max-height: 10000px;
 }
 
 .grafic a {
