@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const AddToMarathon = () => {
     const navigate = useNavigate();
-    const [week, setWeek] = useState('1');
+    const [week, setWeek] = useState('4');
     const [day, setDay] = useState('1');
     const [eatTime, setEatTime] = useState('1');
     const [food, setFood] = useState();
