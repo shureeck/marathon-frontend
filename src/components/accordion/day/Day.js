@@ -12,7 +12,7 @@ const Day = (props) => {
 
     return (<div className='day'>
     <input className='day__input' type="checkbox" id={id}></input>
-    <h3 className='day__h3'><label className='day__label' for={id}><div className='day__name'>{day}</div></label></h3>
+    <h3 className='day__h3'><label className='day__label' htmlFor={id}><div className='day__name'>{day}</div></label></h3>
     <div className='day__grafic'>
     {graficComponent}
     </div>

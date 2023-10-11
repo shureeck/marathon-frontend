@@ -11,12 +11,12 @@ const Grafic = (props) => {
     const data = props.data;
     const food = data.food;
     const foodLinks = food.map((item) => {
-        return <div className='grafic__a'><a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a></div>
+        return <div key={Object.values(item)} className='grafic__a'><a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a></div>
     });
     const id = `${props.id}${data.name}${data.time}`;
     return (<div className={clazz} id={props.id}>
-        <input checked className="grafic__input" type="checkbox" id={id}></input>
-        <h3 className="grafic__h3"><label className="grafic__label" for={id}><div className='grafic__name'>{data.name}</div><div className='grafic__time'>{data.time}</div></label></h3>
+        <input defaultChecked className="grafic__input" type="checkbox" id={id}></input>
+        <h3 className="grafic__h3"><label className="grafic__label" htmlFor={id}><div className='grafic__name'>{data.name}</div><div className='grafic__time'>{data.time}</div></label></h3>
         <div className='grafic__food'>
             {foodLinks}
         </div>

@@ -9,7 +9,7 @@ const Week = (props) => {
 
     return (<div className='week'>
         <input className='week__input' type="checkbox" id={id}></input>
-        <h2 className='week__h2'><label className='week__label' for={id}><div className='week__name'>{week}</div></label></h2>
+        <h2 className='week__h2'><label className='week__label' htmlFor={id}><div className='week__name'>{week}</div></label></h2>
         <div className='week__day'>{daysComponent}</div>
 
     </div>);

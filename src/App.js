@@ -7,12 +7,13 @@ import { Routes, Route } from 'react-router-dom';
 import Recipe from './components/recipe/Recipe';
 import Menu from './components/menu/Menu';
 import All from './components/all/All';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import Login from './components/login/Login';
 import jwt_decode from 'jwt-decode';
+import useToken from './useToken';
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useToken();
 
   useEffect(() => {
     document.title = "Bizzi Kitchen"
@@ -23,26 +24,25 @@ function App() {
   const menu = [
     { name: 'Марафон', path: '/' },
     { name: 'Всi рецепти', path: '/all' },
-    { name: 'Недоданi до меню', path: '/', disabled: true },
+    { name: 'Недоданi до меню', path: '/unassigned', disabled: true },
   ];
 
-  const routes = [<Route path='/cooking' element={<Recipe />} />,
-  <Route path='/login' element={<Login setToken={setToken} />} />,
-  <Route path='/' element={<Accordion />} />,
-  <Route path='/all' element={<All />} />,
+  const routes = [<Route key='cooking' path='/cooking' element={<Recipe />} />,
+  <Route key='login' path='/login' element={<Login setToken={setToken} />} />,
+  <Route key='main' path='/' element={<Accordion />} />,
+  <Route key='all' path='/all' element={<All />} />,
   ];
 
   let signInLink =    <a className='a__login' href='/login'>Sign in</a>;
 
   if (typeof token !== 'undefined') {
-    const tokenDecoded = jwt_decode(token.token);
+    const tokenDecoded = jwt_decode(token);
     const user = `${tokenDecoded.firstname}, ${tokenDecoded.lastname}`;
-    console.log(tokenDecoded);
 
     menu.push({ name: 'Новий рецепт', path: '/recipe' });
     menu.push({ name: 'Додати до меню', path: '/menu' });
-    routes.push(<Route path="/menu" element={<AddToMarathon />} />);
-    routes.push(<Route path="/recipe" element={<AddRecipe />} />);
+    routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
+    routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
     signInLink = <a className='a__login' href='/login'>{user}</a>;
   }
 

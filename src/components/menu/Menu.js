@@ -10,6 +10,7 @@ const Menu = (props) => {
 
     const menuBar = props.items.map((item) => {
         return (<button className='menu__buttons'
+        key={item.path}
             path={item.path}
             onClick={clickHandler}
             disabled={item.disabled}>{item.name}</button>);
