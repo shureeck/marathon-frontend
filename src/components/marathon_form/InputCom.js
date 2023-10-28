@@ -24,7 +24,7 @@ const InputCom = (props) => {
                 <option value="7">Неділя</option>
             </select>
             break;
-        case 'eat':
+        case 'combobox':
             let options;
             if (typeof props.options !== 'undefined') {
                 options = Object.entries(props.options).map((item) => {

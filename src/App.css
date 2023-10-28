@@ -1,18 +1,18 @@
 body,
 html {
-  width: 100%;
+  width: 100vw;
   height: 100%;
 }
 
 #root{
-  width: 100%;
+  width: 100vw;
   height: 100%;
 }
 
 .App {
   position: relative;
   height: 100%;
-  width: 100%;
+  width: 100vw;
   display: table;
   text-align: center;
 }
@@ -22,7 +22,7 @@ html {
   top: 0;
   left: 0;
   height: 100px;
-  width: 100%;
+  width: 100vw;
   border-bottom: 1px solid rgba(90, 116, 148, 0.4);
   vertical-align: middle;
 }
@@ -49,7 +49,7 @@ html {
   display: table;
   top: 153px;
   bottom: 25px;
-  width: 100%;
+  width: 100vw;
   height: calc(100%-125px);
 }
 

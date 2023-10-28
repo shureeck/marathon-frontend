@@ -7,10 +7,12 @@ import { Routes, Route } from 'react-router-dom';
 import Recipe from './components/recipe/Recipe';
 import Menu from './components/menu/Menu';
 import All from './components/all/All';
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import Login from './components/login/Login';
 import jwt_decode from 'jwt-decode';
 import useToken from './useToken';
+import AssignMarathonToUser from './components/user_assidne_form/AssignMarathonToUser';
+import Archive from './components/archive/Archive';
 
 function App() {
   const [token, setToken] = useToken();
@@ -24,6 +26,7 @@ function App() {
   const menu = [
     { name: 'Марафон', path: '/' },
     { name: 'Всi рецепти', path: '/all' },
+    { name: 'Архів', path: '/archive' },
     { name: 'Недоданi до меню', path: '/unassigned', disabled: true },
   ];
 
@@ -31,9 +34,10 @@ function App() {
   <Route key='login' path='/login' element={<Login setToken={setToken} />} />,
   <Route key='main' path='/' element={<Accordion />} />,
   <Route key='all' path='/all' element={<All />} />,
+  <Route key='archive' path='/archive' element={<Archive />} />,
   ];
 
-  let signInLink =    <a className='a__login' href='/login'>Sign in</a>;
+  let signInLink = <a className='a__login' href='/login'>Sign in</a>;
 
   if (typeof token !== 'undefined') {
     const tokenDecoded = jwt_decode(token);
@@ -41,8 +45,10 @@ function App() {
 
     menu.push({ name: 'Новий рецепт', path: '/recipe' });
     menu.push({ name: 'Додати до меню', path: '/menu' });
+    //menu.push({ name: 'Додати до марафону', path: '/assign' });
     routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
     routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
+    //routes.push(<Route key='assign' path='/assign' element={<AssignMarathonToUser />} />);
     signInLink = <a className='a__login' href='/login'>{user}</a>;
   }
 

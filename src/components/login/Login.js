@@ -11,8 +11,6 @@ const navigate = useNavigate();
         const recipe = { username:username, password:password };
         axios.post('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/login', recipe)
             .then(response => {
-                console.log("Response");
-                console.log(response.data);
                 props.setToken(response.data);
                 navigate('/');
                 

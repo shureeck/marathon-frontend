@@ -10,6 +10,8 @@ const AddToMarathon = () => {
     const [day, setDay] = useState('1');
     const [eatTime, setEatTime] = useState('1');
     const [food, setFood] = useState();
+    const [marathoId, setMarathonId] = useState();
+    const [marathonList, setMarathonList] = useState();
     const [quantity, setQuantity] = useState('50%');
 
     const [dishes, setDishes] = useState();
@@ -18,6 +20,7 @@ const AddToMarathon = () => {
 
     const onSaveClick = () => {
         const marathon = {
+            marathon_id: marathoId,
             week: week,
             day: day,
             sceduler: eatTime,
@@ -27,7 +30,6 @@ const AddToMarathon = () => {
 
         axios.post('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/', marathon)
             .then(response => {
-                console.log(response.data);
                 navigate(`/`, { replace: true });
             })
             .catch(error => {
@@ -48,7 +50,6 @@ const AddToMarathon = () => {
         } else {
             axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/dishes')
                 .then(response => {
-                    console.log(response.data);
                     setDishes(response.data);
                     setFood(Object.entries(response.data)[0][0]);
                 })
@@ -58,9 +59,30 @@ const AddToMarathon = () => {
         }
     }, []);
     useEffect(() => {
+        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/marathon_list')
+            .then(response => {
+
+                const obj = {};
+                for (let data of response.data) {
+                    Object.defineProperty(obj,  data.id, {
+                        value: data.name,
+                        enumerable: true,
+                        configurable: true,
+                        writable: true
+                      });
+                }
+
+                setMarathonList(obj);
+                console.log(obj)
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
+
+    useEffect(() => {
         axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/sceduler')
             .then(response => {
-                console.log(response.data);
                 setSceduler(response.data);
             })
             .catch(error => {
@@ -70,10 +92,11 @@ const AddToMarathon = () => {
 
     return (<div className='AddToMarathon'>
         <form className='AddToMarathon__form'>
+            <InputCom onDataChange={setMarathonId} value={marathoId} label='Марафон' type='combobox' options={marathonList}></InputCom>
             <InputCom onDataChange={setWeek} value={week} label='Тиждень' type='week'></InputCom>
             <InputCom onDataChange={setDay} value={day} label='День' type='day'></InputCom>
-            <InputCom onDataChange={setEatTime} value={eatTime} label='Прийом їжі' options={sceduler} type='eat'></InputCom>
-            <InputCom onDataChange={setFood} value={food} label='Страва' type='eat' options={dishes}></InputCom>
+            <InputCom onDataChange={setEatTime} value={eatTime} label='Прийом їжі' options={sceduler} type='combobox'></InputCom>
+            <InputCom onDataChange={setFood} value={food} label='Страва' type='combobox' options={dishes}></InputCom>
             <InputCom onDataChange={setQuantity} label='Кількість' value={quantity}></InputCom>
             <div className='AddToMarathon__buttons'>
                 <button type='button' onClick={onSaveClick}>Зберегти</button>

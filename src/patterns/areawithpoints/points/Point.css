@@ -1,0 +1,36 @@
+.point {
+    margin: 5px;
+    display: inline-block;
+    background-color: #f1f1f1;
+    height: 33px;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.point__check{
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+}
+
+.point__btn{
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    background: none;
+    border: none;
+}
+
+.point__btn:hover{
+    background-color: #c1c1c1;
+}
+.point[active=true]{
+    background-color: #b8ffc0;
+}
+
+.point__label__active{
+    margin-right: 10px;
+    height: 33px;
+    font-size: 14px;
+}
