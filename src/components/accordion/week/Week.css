@@ -14,7 +14,7 @@ div.week{
     visibility: 0;
   }
    .week__h2{
-    background:steelblue;
+    background:#805A3B;
     color:rgb(255, 255, 255);
     padding:1em;
     position: relative;
@@ -38,7 +38,7 @@ div.week{
     max-height:0px;
     overflow: hidden;
     transition:max-height 0.5s;
-    background-color: white;
+    background-color:rgba(255, 255, 255, 0.1);
     box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
   input.week__input:checked ~ .week__h2 .week__label::before{

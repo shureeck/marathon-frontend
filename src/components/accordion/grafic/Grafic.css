@@ -2,8 +2,8 @@
   --color-bg: #EEEDEB;
   --color-title: #0E1C4E;
 
-  --color-summary-1: #FFF6EE;
-  --color-summary-1-highlight: #FFC48B;
+  --color-summary-1:  #FFF6EE;
+  --color-summary-1-highlight: #FD974F;
   --color-summary-2: #FAFAFF;
   --color-summary-2-highlight: #B4B3FF;
   --color-summary-3: #FFF0F3;
@@ -13,7 +13,7 @@
 }
 
 .grafic {
-  border-radius: 5px;
+  #border-radius: 5px;
   overflow: hidden;
   background: rgba(0, 0, 0, .05);
   border-left: 15px solid gray;
@@ -73,7 +73,7 @@ div.grafic {
   content: "";
   display: inline-block;
   border: 10px solid transparent;
-  border-left: 10px solid #FFC48B;
+  border-left: 10px solid #FD974F;
   ;
 }
 

@@ -45,6 +45,7 @@ html {
 }
 
 .Appbody {
+  background-image: url("bg.png");
   position: absolute;
   display: table;
   top: 153px;

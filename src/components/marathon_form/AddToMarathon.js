@@ -10,7 +10,7 @@ const AddToMarathon = () => {
     const [day, setDay] = useState('1');
     const [eatTime, setEatTime] = useState('1');
     const [food, setFood] = useState();
-    const [marathoId, setMarathonId] = useState();
+    const [marathoId, setMarathonId] = useState('1');
     const [marathonList, setMarathonList] = useState();
     const [quantity, setQuantity] = useState('50%');
 

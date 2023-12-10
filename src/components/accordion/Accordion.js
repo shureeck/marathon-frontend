@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Accordion.css';
-import MyData from './MyData';
 import Week from './week/Week';
 import axios from 'axios';
 
-const Accordion = (props) => {
+const Accordion = () => {
 
     const [posts, setPosts] = useState([]);
 
@@ -20,13 +19,33 @@ const Accordion = (props) => {
             .catch(error => {
                 console.error(error);
             });
-    }, [])
+    }, []);
 
-    console.log(posts)
+    const removeClickHandler = (object) => {
+        const tmpArray = [...posts];
+        const week = tmpArray.filter((item) => { return item.week === object.week })[0];
+        const day = week.days.filter((item) => { return item.day === object.day })[0];
+        const grafic = day.grafic.filter((item) => { return item.name === object.schedule && item.time === object.time })[0];
+        for (let dish of grafic.food) {
+            if (Object.values(dish)[0] == object.food) {
+                grafic.food.splice(grafic.food.indexOf(dish), 1);
+                if (grafic.food.length === 0) {
+                    console.log(day.grafic.indexOf(grafic))
+                    day.grafic.splice(day.grafic.indexOf(grafic), 1);
+                    if (day.grafic.length === 0) {
+                        week.days.splice(week.days.indexOf(day), 1);
+                    }
+                }
+            }
+        }
+        setPosts(tmpArray);
+    }
 
-    const days = MyData;
+    console.log(posts);
     const weekSlist = posts.length > 0
-        ? posts.map((week) => { return (<Week key={week.week} week={week.week} days={week.days}></Week>); })
+        ? posts.map((week) => {
+            return  (<Week onRemoveClick={removeClickHandler} key={week.week} week={week.week} days={week.days}></Week>);
+        })
         : <div>Ther are no any Data</div>;
     return <div>
         {weekSlist}

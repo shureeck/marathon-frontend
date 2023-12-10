@@ -2,10 +2,17 @@ import './Week.css'
 import Day from '../day/Day'
 
 const Week = (props) => {
+
+    const removeClickHandler = (object) => {
+        const obj = { ...object, week: week };
+        props.onRemoveClick(obj);
+    }
     const week = props.week;
     const id = week;
     const days = props.days;
-    const daysComponent = days.map((item) => { return <Day key={id+item.day} id={id} tittle={item.day} schedule={item.grafic} /> });
+    const daysComponent = days.map((item) => {
+        return <Day key={id + item.day} onRemoveClick={removeClickHandler} id={id} tittle={item.day} schedule={item.grafic} />;
+    });
 
     return (<div className='week'>
         <input className='week__input' type="checkbox" id={id}></input>

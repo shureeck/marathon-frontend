@@ -1,18 +1,40 @@
+import DishControl from '../../../patterns/dish_control/DishControl';
 import './Grafic.css'
 import { useNavigate } from 'react-router-dom';
 
 const Grafic = (props) => {
     const navigate = useNavigate();
+    const food = props.data.food;
+
     const onLinkClick = (event) => {
         navigate(event.target.href);
     }
 
+    const removClickHandler = (event) => {
+        const id = event.target.parentElement.parentElement.id;
+        const sceduleName = props.data.name;
+        const scheduleTime = props.data.time;
+        const obj = {
+            food: id,
+            schedule: sceduleName,
+            time: scheduleTime
+        }
+        props.onRemoveClick(obj);
+    }
+    const onEditClickHandler = (event) => {
+        const id = event.target.parentElement.parentElement.id;
+        console.log(id);
+        console.log('Edit');
+    }
     let clazz = 'grafic info';
     const data = props.data;
-    const food = data.food;
     const foodLinks = food.map((item) => {
-        return <div key={Object.values(item)} className='grafic__a'><a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a></div>
+        return <div key={Object.values(item)} className='grafic__a'>
+            <a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a>
+            <DishControl id={Object.values(item)} onRemoveClick={removClickHandler} onEditClick={onEditClickHandler} />
+        </div>
     });
+
     const id = `${props.id}${data.name}${data.time}`;
     return (<div className={clazz} id={props.id}>
         <input defaultChecked className="grafic__input" type="checkbox" id={id}></input>
