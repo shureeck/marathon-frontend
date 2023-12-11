@@ -28,10 +28,12 @@ const Grafic = (props) => {
     }
     let clazz = 'grafic info';
     const data = props.data;
+//<DishControl id={Object.values(item)} onRemoveClick={removClickHandler} onEditClick={onEditClickHandler} />
+
+
     const foodLinks = food.map((item) => {
         return <div key={Object.values(item)} className='grafic__a'>
             <a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a>
-            <DishControl id={Object.values(item)} onRemoveClick={removClickHandler} onEditClick={onEditClickHandler} />
         </div>
     });
 
