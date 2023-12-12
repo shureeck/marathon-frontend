@@ -1,9 +1,11 @@
 .rdw-editor-wrapper {
+    background-color: #FEF2e4;
     min-height: 500px;
     border: 1px solid #f1f1f1;
 }
 
 .editor {
+
     margin: 10px;
 }
 
@@ -34,7 +36,7 @@
 
 .AddRecipe__form label {
     text-align: left;
-    color: #636363;
+    color: #ffffff;
     font-style: italic;
 }
 

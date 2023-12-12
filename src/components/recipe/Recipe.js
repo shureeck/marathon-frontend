@@ -1,3 +1,4 @@
+import './Recipe.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -21,7 +22,7 @@ const Recipe = () => {
         }
     }, [recipe]);
 
-    return (<div dangerouslySetInnerHTML={{ __html: recipe }}></div>);
+    return (<div className='recipe' dangerouslySetInnerHTML={{ __html: recipe }}></div>);
 }
 
 export default Recipe;
