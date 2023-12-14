@@ -1,0 +1,25 @@
+.kebab_items{
+    position:absolute;
+    background-color: #FEF2e4;
+    border-left: 15px solid #fd974f;
+    right: -10px;
+    top: 45px;
+    z-index: 10;
+    width: 100%;
+}
+
+.kebab__buttons {
+    height: 40px;
+    width: 130px;
+    color: #636363;
+    font-weight: bold;
+    border: 1px solid #fd974f;
+    vertical-align: top;
+}
+
+
+.kebab__buttons:disabled {
+    border: 1px solid #fd974f;
+    background-color: #f1f1f1;
+    color: #9a9a9a;
+}

@@ -49,3 +49,11 @@ div.week{
   input.week__input:checked ~ .week__h2 ~ div.week__day{
     max-height:100%;
   }
+
+  @media only screen and (max-width: 600px) {
+    div.week{
+      margin:0;
+      margin-bottom: 20px;
+    }
+  
+    }
