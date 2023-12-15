@@ -10,18 +10,18 @@
     width: 100px;
     color: #636363;
     font-weight: bold;
-    border: 1px solid #f1f1f1;
-    background-color: #ffffff;
+    border: 1px solid #805a3b;
+    background-color: #FEF2e4;
     vertical-align: top;
 }
 
 .menu__buttons:hover {
-    border: 1px solid #c3c3c3;
-    background-color: #f1f1f1;
+    border: 1px solid #fd974f;
+    background-color: #fcd9b0;
 }
 
 .menu__buttons:disabled {
-    border: 1px solid #f1f1f1;
+    border: 1px solid #805a3b;;
     background-color: #f1f1f1;
     color: #9a9a9a;
 }

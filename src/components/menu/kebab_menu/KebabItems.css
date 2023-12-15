@@ -13,13 +13,13 @@
     width: 130px;
     color: #636363;
     font-weight: bold;
-    border: 1px solid #fd974f;
+    border: 1px solid #805a3b;
     vertical-align: top;
 }
 
 
 .kebab__buttons:disabled {
-    border: 1px solid #fd974f;
+    border: 1px solid #805a3b;
     background-color: #f1f1f1;
     color: #9a9a9a;
 }
