@@ -7,6 +7,7 @@ import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 const Accordion = () => {
 
     const [posts, setPosts] = useState([]);
+    const [marathonName, setMarathonName]=useState();
 
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
@@ -16,6 +17,14 @@ const Accordion = () => {
             .then(response => {
                 console.log(response.data);
                 setPosts(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+            axios.get(`https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/marathonTittle${param}`)
+            .then(response => {
+                console.log(response.data);
+                setMarathonName(response.data[0]?.name);
             })
             .catch(error => {
                 console.error(error);
@@ -49,6 +58,7 @@ const Accordion = () => {
         })
         : <ProgressIndicator/>;
     return <div className='accordion'>
+        <h2 className='accordion__h2'>{marathonName}</h2>
     {weekSlist}
     </div>;
 
