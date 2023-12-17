@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Accordion.css';
 import Week from './week/Week';
 import axios from 'axios';
+import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 
 const Accordion = () => {
 
@@ -46,9 +47,9 @@ const Accordion = () => {
         ? posts.map((week) => {
             return  (<Week onRemoveClick={removeClickHandler} key={week.week} week={week.week} days={week.days}></Week>);
         })
-        : <div>Ther are no any Data</div>;
-    return <div>
-        {weekSlist}
+        : <ProgressIndicator/>;
+    return <div className='accordion'>
+    {weekSlist}
     </div>;
 
 };
