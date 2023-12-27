@@ -10,7 +10,7 @@ const Recipe = () => {
         if (queryParameters.size === 1) {
             const dish = queryParameters.get('dish');
 
-            api.get(`?dish=${dish}`)
+            api().get(`?dish=${dish}`)
                 .then(response => {
                     console.log(response.data);
                     setRecipe(response.data);

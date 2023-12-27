@@ -9,7 +9,7 @@ const Login = (props) => {
 const navigate = useNavigate();
    const onLoginClick=()=>{
         const recipe = { username:username, password:password };
-        api.post('/login', recipe)
+        api().post('/login', recipe)
             .then(response => {
                 props.setToken(response.data);
                 navigate('/');

@@ -7,7 +7,7 @@ import api from '../../Api';
 const Archive = (props) => {
     const [list, setList] = useState([]);
     useEffect(() => {
-        api.get('/marathon_list')
+        api().get('/marathon_list')
             .then(response => {
                 setList(response.data);
                 marathonList.push();

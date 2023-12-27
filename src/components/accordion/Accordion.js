@@ -14,7 +14,7 @@ const Accordion = () => {
         const queryParameters = new URLSearchParams(window.location.search);
         const id = queryParameters.get('id');
         const param = id ? `?id=${id}` : '';
-        api.get(`/${param}`)
+        api().get(`/${param}`)
             .then(response => {
                 console.log("RESPONSE", response);
                 setPosts(response.data);
@@ -26,7 +26,7 @@ const Accordion = () => {
                     navigate('/login');
                 }
             });
-        api.get(`/marathonTittle${param}`)
+        api().get(`/marathonTittle${param}`)
             .then(response => {
                 console.log(response.data);
                 setMarathonName(response.data[0]?.name);

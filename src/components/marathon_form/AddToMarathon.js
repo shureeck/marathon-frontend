@@ -28,7 +28,7 @@ const AddToMarathon = () => {
             quantity: quantity
         };
 
-        api.post('/', marathon)
+        api().post('/', marathon)
             .then(response => {
                 navigate(`/`, { replace: true });
             })
@@ -48,7 +48,7 @@ const AddToMarathon = () => {
             setFood(idParam);
             setDishes({ [idParam]: tittleParam });
         } else {
-            api.get('/dishes')
+            api().get('/dishes')
                 .then(response => {
                     setDishes(response.data);
                     setFood(Object.entries(response.data)[0][0]);
@@ -59,7 +59,7 @@ const AddToMarathon = () => {
         }
     }, []);
     useEffect(() => {
-        api.get('/marathon_list')
+        api().get('/marathon_list')
             .then(response => {
 
                 const obj = {};
@@ -81,7 +81,7 @@ const AddToMarathon = () => {
     }, []);
 
     useEffect(() => {
-        api.get('/sceduler')
+        api().get('/sceduler')
             .then(response => {
                 setSceduler(response.data);
             })

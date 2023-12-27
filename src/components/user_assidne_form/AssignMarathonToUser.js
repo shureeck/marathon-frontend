@@ -13,7 +13,7 @@ const AssignMarathonToUser = (props) => {
     const [assigned, setAssigned] = useState();
 
     useEffect(() => {
-        api.get('/users')
+        api().get('/users')
             .then(response => {
                 const usersResponse = response.data;
                 setUsers(usersResponse.map((user) => { return `${user.firstname} ${user.lastname} (${user.username})` }));
@@ -23,7 +23,7 @@ const AssignMarathonToUser = (props) => {
                 console.error(error);
             });
 
-        api.get('/marathon_list')
+        api().get('/marathon_list')
             .then(response => {
                 const marathons = response.data;
                 setMarathonList(marathons.map((itme) => { return `${itme.name}` }));
@@ -34,7 +34,7 @@ const AssignMarathonToUser = (props) => {
     }, []);
 
     useEffect(() => {
-        api.get('/marathon_list?user=2')
+        api().get('/marathon_list?user=2')
             .then(response => {
                 const responseData = response.data;
                 setAssigned(responseData.map((item) => {

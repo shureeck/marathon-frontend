@@ -17,7 +17,7 @@ const All = (props) => {
     const [data, setData] = useState(value);
 
     useEffect(() => {
-        api.get('/all')
+        api().get('/all')
             .then(response => {
                 console.log(response.data);
                 setValue(response.data);

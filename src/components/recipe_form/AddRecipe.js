@@ -17,7 +17,7 @@ const AddRecipe = () => {
     const onSaveClick = () => {
         const value = draftToHtml(convertToRaw(editorState.getCurrentContent()));
         const recipe = { tittle, text: value };
-        api.post('/recipe', recipe)
+        api().post('/recipe', recipe)
             .then(response => {
                 console.log("Response");
                 console.log(response.data);
