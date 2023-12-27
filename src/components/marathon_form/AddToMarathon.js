@@ -1,8 +1,8 @@
+import api from '../../Api';
 import './AddToMarathon.css'
 import InputCom from './InputCom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const AddToMarathon = () => {
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const AddToMarathon = () => {
             quantity: quantity
         };
 
-        axios.post('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/', marathon)
+        api.post('/', marathon)
             .then(response => {
                 navigate(`/`, { replace: true });
             })
@@ -48,7 +48,7 @@ const AddToMarathon = () => {
             setFood(idParam);
             setDishes({ [idParam]: tittleParam });
         } else {
-            axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/dishes')
+            api.get('/dishes')
                 .then(response => {
                     setDishes(response.data);
                     setFood(Object.entries(response.data)[0][0]);
@@ -59,7 +59,7 @@ const AddToMarathon = () => {
         }
     }, []);
     useEffect(() => {
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/marathon_list')
+        api.get('/marathon_list')
             .then(response => {
 
                 const obj = {};
@@ -81,7 +81,7 @@ const AddToMarathon = () => {
     }, []);
 
     useEffect(() => {
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/sceduler')
+        api.get('/sceduler')
             .then(response => {
                 setSceduler(response.data);
             })

@@ -1,6 +1,6 @@
+import api from '../../Api';
 import './Recipe.css'
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState();
@@ -10,7 +10,7 @@ const Recipe = () => {
         if (queryParameters.size === 1) {
             const dish = queryParameters.get('dish');
 
-            axios.get(`https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD?dish=${dish}`)
+            api.get(`?dish=${dish}`)
                 .then(response => {
                     console.log(response.data);
                     setRecipe(response.data);

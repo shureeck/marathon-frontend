@@ -1,10 +1,10 @@
+import api from '../../Api';
 import AddSelected from '../../patterns/addselected/AddSelected';
 import AreaWithPoints from '../../patterns/areawithpoints/AreaWithPoints';
 import Button from '../../patterns/button/Button';
 import Select from '../../patterns/select/Select';
 import './AssignMarathonToUser.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const AssignMarathonToUser = (props) => {
    
@@ -13,7 +13,7 @@ const AssignMarathonToUser = (props) => {
     const [assigned, setAssigned] = useState();
 
     useEffect(() => {
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/users')
+        api.get('/users')
             .then(response => {
                 const usersResponse = response.data;
                 setUsers(usersResponse.map((user) => { return `${user.firstname} ${user.lastname} (${user.username})` }));
@@ -23,7 +23,7 @@ const AssignMarathonToUser = (props) => {
                 console.error(error);
             });
 
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/marathon_list')
+        api.get('/marathon_list')
             .then(response => {
                 const marathons = response.data;
                 setMarathonList(marathons.map((itme) => { return `${itme.name}` }));
@@ -34,7 +34,7 @@ const AssignMarathonToUser = (props) => {
     }, []);
 
     useEffect(() => {
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/marathon_list?user=2')
+        api.get('/marathon_list?user=2')
             .then(response => {
                 const responseData = response.data;
                 setAssigned(responseData.map((item) => {

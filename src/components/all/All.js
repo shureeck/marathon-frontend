@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Grafic from '../accordion/grafic/Grafic';
 import './All.css'
-import axios from 'axios';
+import api from '../../Api';
 const value = JSON.parse(`[{"name": "С","food": [{"Торт \\"Мурашник\\"": "44"},{"Сливовий пиріг": "43"},{"Сирний пиріг": "45"}]},
 {"name": "В","food": [{"Перекус": "20"}]},
 {"name": "Ц","food": [{"Перекус": "20"}]},
@@ -17,7 +17,7 @@ const All = (props) => {
     const [data, setData] = useState(value);
 
     useEffect(() => {
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/all')
+        api.get('/all')
             .then(response => {
                 console.log(response.data);
                 setValue(response.data);

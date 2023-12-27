@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
-import axios from 'axios';
 import { useState } from 'react';
+import api from '../../Api';
 
 const Login = (props) => {
     const [username, setUserName] = useState();
@@ -9,7 +9,7 @@ const Login = (props) => {
 const navigate = useNavigate();
    const onLoginClick=()=>{
         const recipe = { username:username, password:password };
-        axios.post('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/login', recipe)
+        api.post('/login', recipe)
             .then(response => {
                 props.setToken(response.data);
                 navigate('/');

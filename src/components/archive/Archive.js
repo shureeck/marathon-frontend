@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import ArchLink from '../../patterns/archlink/ArchLink';
 import './Archive.css'
-import axios from 'axios';
 import { useState } from 'react';
+import api from '../../Api';
 
 const Archive = (props) => {
     const [list, setList] = useState([]);
     useEffect(() => {
-        axios.get('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/marathon_list')
+        api.get('/marathon_list')
             .then(response => {
                 setList(response.data);
                 marathonList.push();

@@ -5,7 +5,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../Api';
 
 
 const AddRecipe = () => {
@@ -17,7 +17,7 @@ const AddRecipe = () => {
     const onSaveClick = () => {
         const value = draftToHtml(convertToRaw(editorState.getCurrentContent()));
         const recipe = { tittle, text: value };
-        axios.post('https://oapec6r46c.execute-api.eu-west-1.amazonaws.com/PROD/recipe', recipe)
+        api.post('/recipe', recipe)
             .then(response => {
                 console.log("Response");
                 console.log(response.data);
