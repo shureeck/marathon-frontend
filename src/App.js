@@ -42,14 +42,15 @@ function App() {
   if (typeof token !== 'undefined') {
     const tokenDecoded = jwt_decode(token);
     const user = `${tokenDecoded.firstname}, ${tokenDecoded.lastname}`;
-
-    menu.push({ name: 'Новий рецепт', path: '/recipe' });
-    menu.push({ name: 'Додати до меню', path: '/menu' });
-    //menu.push({ name: 'Додати до марафону', path: '/assign' });
-    routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
-    routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
-    //routes.push(<Route key='assign' path='/assign' element={<AssignMarathonToUser />} />);
-    signInLink = <a className='a__login' href='/login'>{user}</a>;
+    if (tokenDecoded.role === 'Admin') {
+      menu.push({ name: 'Новий рецепт', path: '/recipe' });
+      menu.push({ name: 'Додати до меню', path: '/menu' });
+      //menu.push({ name: 'Додати до марафону', path: '/assign' });
+      routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
+      routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
+      //routes.push(<Route key='assign' path='/assign' element={<AssignMarathonToUser />} />);
+      signInLink = <a className='a__login' href='/login'>{user}</a>;
+    }
   }
 
   return (
