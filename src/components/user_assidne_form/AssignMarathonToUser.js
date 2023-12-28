@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import api from '../../Api';
 import AddSelected from '../../patterns/addselected/AddSelected';
 import AreaWithPoints from '../../patterns/areawithpoints/AreaWithPoints';
@@ -11,6 +12,7 @@ const AssignMarathonToUser = (props) => {
     const [users, setUsers] = useState();
     const [marathonList, setMarathonList] = useState();
     const [assigned, setAssigned] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         api().get('/users')
@@ -21,6 +23,10 @@ const AssignMarathonToUser = (props) => {
             })
             .catch(error => {
                 console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
             });
 
         api().get('/marathon_list')
@@ -29,7 +35,11 @@ const AssignMarathonToUser = (props) => {
                 setMarathonList(marathons.map((itme) => { return `${itme.name}` }));
             })
             .catch(error => {
+                const status = error.response.status;
                 console.error(error);
+                if (status === 401) {
+                    navigate('/login');
+                }
             });
     }, []);
 
@@ -45,6 +55,10 @@ const AssignMarathonToUser = (props) => {
             })
             .catch(error => {
                 console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
             });
     }, []);
 

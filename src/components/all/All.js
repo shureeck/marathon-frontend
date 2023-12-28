@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Grafic from '../accordion/grafic/Grafic';
 import './All.css'
 import api from '../../Api';
+import { useNavigate } from 'react-router-dom';
 const value = JSON.parse(`[{"name": "С","food": [{"Торт \\"Мурашник\\"": "44"},{"Сливовий пиріг": "43"},{"Сирний пиріг": "45"}]},
 {"name": "В","food": [{"Перекус": "20"}]},
 {"name": "Ц","food": [{"Перекус": "20"}]},
@@ -15,6 +16,7 @@ const value = JSON.parse(`[{"name": "С","food": [{"Торт \\"Мурашник
 const All = (props) => {
     const [value, setValue] = useState([]);
     const [data, setData] = useState(value);
+    const navigate = useNavigate();
 
     useEffect(() => {
         api().get('/all')
@@ -25,6 +27,10 @@ const All = (props) => {
             })
             .catch(error => {
                 console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
             });
     }, []);
     

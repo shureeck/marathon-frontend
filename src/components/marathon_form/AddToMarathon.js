@@ -34,6 +34,10 @@ const AddToMarathon = () => {
             })
             .catch(error => {
                 console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
                 alert(error.response.data);
             });
 
@@ -55,6 +59,10 @@ const AddToMarathon = () => {
                 })
                 .catch(error => {
                     console.error(error);
+                    const status = error.response.status;
+                    if (status === 401) {
+                        navigate('/login');
+                    }
                 });
         }
     }, []);
@@ -77,6 +85,10 @@ const AddToMarathon = () => {
             })
             .catch(error => {
                 console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
             });
     }, []);
 
@@ -87,6 +99,10 @@ const AddToMarathon = () => {
             })
             .catch(error => {
                 console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
             });
     }, [])
 

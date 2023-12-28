@@ -24,6 +24,10 @@ const AddRecipe = () => {
                 navigate(`/menu?id=${response.data.id}&tittle=${response.data.tittle}`, {replace:true});
             })
             .catch(error => {
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
                 console.log("Error")
                 console.error(error);
                 alert(error.response.data);

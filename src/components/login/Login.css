@@ -1,7 +1,11 @@
-.Login{
-max-width: 450px;
-margin: auto;
-margin-top: 20px;
+.Login {
+    max-width: 450px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.Login__h2 {
+    color: #F2F2e4;
 }
 
 .Login__input,
@@ -20,7 +24,7 @@ margin-top: 20px;
 
 .Login__label {
     text-align: left;
-    color: #636363;
+    color: #ffffff;
     font-style: italic;
 }
 

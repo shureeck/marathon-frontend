@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import api from '../../Api';
 import './Recipe.css'
 import { useState, useEffect } from 'react';
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
@@ -18,6 +20,10 @@ const Recipe = () => {
                 .catch(error => {
                     setRecipe(error);
                     console.error(error);
+                    const status = error.response.status;
+                    if (status === 401) {
+                        navigate('/login');
+                    }
                 });
         }
     }, [recipe]);

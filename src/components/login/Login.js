@@ -26,11 +26,11 @@ const navigate = useNavigate();
     const passChangeHandler=(event)=>{setPassword(event.target.value);}
 
     return (<div className='Login'>
-        <h2>Log in to account</h2>
+        <h2 className='Login__h2' >Увійти до аккаунту</h2>
         <form>
-            <label className='Login__label'>Username</label>
+            <label className='Login__label'>Ім'я користувача</label>
             <input type='text' placeholder='e-mail' className='Login__input' onChange={loginChangeHandler} value={username}></input>
-            <label className='Login__label'>Password</label>
+            <label className='Login__label'>Пароль</label>
             <input type='password' placeholder='password' className='Login__input' onChange={passChangeHandler} value={password}></input>
             <button className='Login__button' onClick={onLoginClick} type='button'>Login</button>
             <button className='Login__button' type='button'>Cancel</button>
