@@ -107,6 +107,7 @@ const AddToMarathon = () => {
     }, [])
 
     return (<div className='AddToMarathon'>
+        <h2>Додати до меню</h2>
         <form className='AddToMarathon__form'>
             <InputCom onDataChange={setMarathonId} value={marathoId} label='Марафон' type='combobox' options={marathonList}></InputCom>
             <InputCom onDataChange={setWeek} value={week} label='Тиждень' type='week'></InputCom>

@@ -1,0 +1,37 @@
+.NewMarathon {
+    max-width: 450px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.NewMarathon h2 {
+    color: #F2F2e4;
+}
+
+.NewMarathon__input,
+.NewMarathon__label,
+.NewMarathon__textarea {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.NewMarathon__input,
+.NewMarathon__textarea {
+    border: 1px solid #f1f1f1;
+    height: 33px;
+    width: 100%;
+    padding-left: 10px;
+}
+.NewMarathon__textarea
+ {
+    resize: none;
+    height: 99px;
+    padding-top: 10px;
+}
+
+.NewMarathon__label {
+    text-align: left;
+    color: #ffffff;
+    font-style: italic;
+}

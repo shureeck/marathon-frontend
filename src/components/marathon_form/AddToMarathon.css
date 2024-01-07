@@ -1,6 +1,9 @@
 .AddToMarathon__form{
     margin: 20px;
 }
+.AddToMarathon h2{
+    color: #F2F2e4;
+}
 
 .AddToMarathon__buttons button {
     height: 33px;

@@ -42,6 +42,7 @@ const AddRecipe = () => {
     }
 
     return (<div className='AddRecipe'>
+        <h2>Новий рецепт</h2>
         <form className='AddRecipe__form'>
             <label>Назва страви</label>
             <input id='name' className={errorClass} value={tittle} onChange={onTittleChange}></input>

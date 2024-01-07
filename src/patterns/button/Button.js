@@ -2,7 +2,7 @@ import './Button.css'
 
 const Button = (props) => {
     const name = props.name;
-    return <button className='my_button'>{name}</button>
+    return <button type='button' onClick={props.onClick} className='my_button'>{name}</button>
 }
 
 export default Button;

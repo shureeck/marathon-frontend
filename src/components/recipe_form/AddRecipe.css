@@ -3,6 +3,9 @@
     min-height: 500px;
     border: 1px solid #f1f1f1;
 }
+.AddRecipe h2{
+    color: #F2F2e4;
+}
 
 .editor {
 
