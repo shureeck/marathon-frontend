@@ -68,6 +68,9 @@ html {
   background-color: #F0F0F0;
 }
 .a__login{
+  color: #FEF2e4;
+  text-decoration: none;
+  font-weight: bold;
   position: absolute;
   right: 20px;
   top: 0px;

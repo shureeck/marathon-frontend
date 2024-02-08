@@ -50,10 +50,11 @@ function App() {
       //menu.push({ name: 'Додати до марафону', path: '/assign' });
       routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
       routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
+      routes.push(<Route key='recipe' path="/recipe/edit" element={<AddRecipe />} />);
       routes.push(<Route key='newmarathon' path='/newmarathon' element={<NewMarathon />} />);
       //routes.push(<Route key='assign' path='/assign' element={<AssignMarathonToUser />} />);
-      signInLink = <a className='a__login' href='/login'>{user}</a>;
     }
+    signInLink = <a className='a__login' href='/login'>{user}</a>;
   }
 
   return (
