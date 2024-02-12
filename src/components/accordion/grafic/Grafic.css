@@ -109,5 +109,12 @@ div.grafic__food {
   margin-left: 10px;
 }
 
-.grafic__a {  margin-top: 10px;
-  margin-bottom: 10px;}
+.grafic__a {  
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.grafic__a:has(button:hover) {
+  background-color: #FFC48B;      
+}

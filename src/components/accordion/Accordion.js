@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Accordion.css';
 import Week from './week/Week';
 import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../../Api';
 
 const Accordion = () => {
@@ -10,7 +10,7 @@ const Accordion = () => {
     const [marathonName, setMarathonName] = useState();
     const navigate = useNavigate();
 
-    useEffect(() => { 
+    useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
         const id = queryParameters.get('id');
         const param = id ? `?id=${id}` : '';
@@ -37,23 +37,36 @@ const Accordion = () => {
     }, []);
 
     const removeClickHandler = (object) => {
-        const tmpArray = [...posts];
-        const week = tmpArray.filter((item) => { return item.week === object.week })[0];
-        const day = week.days.filter((item) => { return item.day === object.day })[0];
-        const grafic = day.grafic.filter((item) => { return item.name === object.schedule && item.time === object.time })[0];
-        for (let dish of grafic.food) {
-            if (Object.values(dish)[0] === object.food) {
-                grafic.food.splice(grafic.food.indexOf(dish), 1);
-                if (grafic.food.length === 0) {
-                    console.log(day.grafic.indexOf(grafic))
-                    day.grafic.splice(day.grafic.indexOf(grafic), 1);
-                    if (day.grafic.length === 0) {
-                        week.days.splice(week.days.indexOf(day), 1);
+        const obj = {
+            ...object,
+            marathon: marathonName
+        }
+
+        if (window.confirm(`Видалити "${object.foodName}" у ${object.day} ${object.schedule} (${object.time}) ${object.week} `)) {
+            api().delete('/', { params: obj }).then(response => {
+                console.log(response.data);
+            })
+                .catch(error => {
+                    console.error(error);
+                });
+            const tmpArray = [...posts];
+            const week = tmpArray.filter((item) => { return item.week === object.week })[0];
+            const day = week.days.filter((item) => { return item.day === object.day })[0];
+            const grafic = day.grafic.filter((item) => { return item.name === object.schedule && item.time === object.time })[0];
+            for (let dish of grafic.food) {
+                if (Object.values(dish)[0] === object.food) {
+                    grafic.food.splice(grafic.food.indexOf(dish), 1);
+                    if (grafic.food.length === 0) {
+                        console.log(day.grafic.indexOf(grafic))
+                        day.grafic.splice(day.grafic.indexOf(grafic), 1);
+                        if (day.grafic.length === 0) {
+                            week.days.splice(week.days.indexOf(day), 1);
+                        }
                     }
                 }
             }
+            setPosts(tmpArray);
         }
-        setPosts(tmpArray);
     }
 
     console.log(posts);
@@ -63,7 +76,7 @@ const Accordion = () => {
         })
         : <ProgressIndicator />;
     return <div className='accordion'>
-        <h2 className='accordion__h2'>{marathonName}</h2>
+        <h2 className='accordion__h2' key="h2">{marathonName}</h2>
         {weekSlist}
     </div>;
 

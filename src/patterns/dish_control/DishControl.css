@@ -1,26 +1,29 @@
 .dish_control{
-    float: right;
-    width: 80px;
+    position: absolute;
+    right: 10px;
+    top:2px;
+    height: 38px;
     display: inline;
     align-items:center;
 }
 .dish_control__btn{
-    height: 25px;
-    width: 25px;
-   margin-left: 5px;
-   margin-right: 5px;
+    height: 38px;
+    width: 38px;
    background: none;
    border: none;
 }
 .dish_control__btn img{
-    height: 23px;
-    width: 23px;
+    height: 38px;
+    width: 38px;
 }
 
 .dish_control__btn:hover{
     box-shadow: 2px 2px 5px #c1c1c1;
     background-color:rgba(193, 193, 193, .3);
-    border-radius: 5px;
+    border-radius: 50%;
+    .grafic__a {
+        background-color: red;
+    }
 }
 .dish_control__btn:active{
     border: #c1c1c1 solid 1px;
