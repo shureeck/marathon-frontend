@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 const AddToMarathon = () => {
     const navigate = useNavigate();
-    const [week, setWeek] = useState('4');
-    const [day, setDay] = useState('1');
-    const [eatTime, setEatTime] = useState('1');
+    const [week, setWeek] = useState('3');
+    const [day, setDay] = useState({ value: "1", label: "Понеділок" });
+    const [eatTime, setEatTime] = useState();
     const [food, setFood] = useState();
     const [marathoId, setMarathonId] = useState('1');
     const [marathonList, setMarathonList] = useState();
@@ -20,14 +20,13 @@ const AddToMarathon = () => {
 
     const onSaveClick = () => {
         const marathon = {
-            marathon_id: marathoId,
+            marathon_id: marathoId.value,
             week: week,
-            day: day,
-            sceduler: eatTime,
-            food: food,
+            day: Array.isArray(day) ? day.map((d) => { return d.value }) : [day.value],
+            sceduler: eatTime.value,
+            food: food.value,
             quantity: quantity
         };
-
         api().post('/', marathon)
             .then(response => {
                 navigate(`/`, { replace: true });
@@ -40,7 +39,6 @@ const AddToMarathon = () => {
                 }
                 alert(error.response.data);
             });
-
         console.log(marathon);
     }
 
@@ -49,13 +47,16 @@ const AddToMarathon = () => {
         if (queryParameters.size === 2) {
             let idParam = queryParameters.get('id');
             let tittleParam = queryParameters.get('tittle');
-            setFood(idParam);
+            setFood({ value: idParam, label: tittleParam });
             setDishes({ [idParam]: tittleParam });
         } else {
             api().get('/dishes')
                 .then(response => {
                     setDishes(response.data);
-                    setFood(Object.entries(response.data)[0][0]);
+                    const tmp = Object.entries(response.data);
+                    const defaultFood = { value: tmp[tmp.length - 1][0], label: tmp[tmp.length - 1][1] };
+                    setFood(defaultFood);
+
                 })
                 .catch(error => {
                     console.error(error);
@@ -72,16 +73,18 @@ const AddToMarathon = () => {
 
                 const obj = {};
                 for (let data of response.data) {
-                    Object.defineProperty(obj,  data.id, {
+                    Object.defineProperty(obj, data.id, {
                         value: data.name,
                         enumerable: true,
                         configurable: true,
                         writable: true
-                      });
+                    });
                 }
 
                 setMarathonList(obj);
-                console.log(obj)
+                const keys = Object.entries(obj);
+                const defaultMarathon = { value: keys[keys.length - 1][0], label: keys[keys.length - 1][1] };
+                setMarathonId(defaultMarathon);
             })
             .catch(error => {
                 console.error(error);
@@ -96,6 +99,9 @@ const AddToMarathon = () => {
         api().get('/sceduler')
             .then(response => {
                 setSceduler(response.data);
+                const tmp = Object.entries(response.data);
+                const defaultSceduler = { value: tmp[0][0], label: tmp[0][1] };
+                setEatTime(defaultSceduler);
             })
             .catch(error => {
                 console.error(error);
@@ -111,7 +117,7 @@ const AddToMarathon = () => {
         <form className='AddToMarathon__form'>
             <InputCom onDataChange={setMarathonId} value={marathoId} label='Марафон' type='combobox' options={marathonList}></InputCom>
             <InputCom onDataChange={setWeek} value={week} label='Тиждень' type='week'></InputCom>
-            <InputCom onDataChange={setDay} value={day} label='День' type='day'></InputCom>
+            <InputCom onDataChange={setDay} value={day} isMulti label='День' type='day'></InputCom>
             <InputCom onDataChange={setEatTime} value={eatTime} label='Прийом їжі' options={sceduler} type='combobox'></InputCom>
             <InputCom onDataChange={setFood} value={food} label='Страва' type='combobox' options={dishes}></InputCom>
             <InputCom onDataChange={setQuantity} label='Кількість' value={quantity}></InputCom>
@@ -119,9 +125,7 @@ const AddToMarathon = () => {
                 <button type='button' onClick={onSaveClick}>Зберегти</button>
                 <button type='button'>Скасувати</button>
             </div>
-
         </form>
-
     </div>);
 }
 
