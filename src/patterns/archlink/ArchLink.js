@@ -10,6 +10,7 @@ const ArchLink = (props) => {
     const navigate = useNavigate();
 
     const onClick = (event) => {
+        localStorage.setItem('selected', event.currentTarget.href.split('=')[1]);
         navigate(event.target.href);
     }
     return (

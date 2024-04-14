@@ -8,9 +8,9 @@ const Grafic = (props) => {
     const [token, setToken] = useToken();
     const navigate = useNavigate();
     const food = props.data.food;
-
+    const schedule = props.line ? `${props.line} > ${props.data.name} ${props.data.time}` : '';
     const onLinkClick = (event) => {
-        navigate(event.target.href);
+        //   navigate(`${event.target.href}&line=${schedule}`);
     }
 
     const removClickHandler = (event) => {
@@ -35,12 +35,14 @@ const Grafic = (props) => {
             const tokenDecoded = jwt_decode(token);
             removeBtn = (props.onRemoveClick && tokenDecoded.role === 'Admin') ? <DishControl id={Object.values(item)} food={Object.keys(item)} onRemoveClick={removClickHandler} /> : "";
         }
-          return <div key={Object.values(item)} className='grafic__a'>
-                <a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}`}>{Object.keys(item)}</a>
-                {removeBtn}
-            </div>
+        const lineParam = schedule.length === 0 ? '' : `&line=${schedule}`;
+        return <div key={Object.values(item)} className='grafic__a'>
 
-        });
+            <a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}${lineParam}`}>{Object.keys(item)}</a>
+            {removeBtn}
+        </div>
+
+    });
 
     const id = `${props.id}${data.name}${data.time}`;
     return (<div className={clazz} id={props.id}>

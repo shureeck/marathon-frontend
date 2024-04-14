@@ -1,0 +1,29 @@
+.shared {
+    width: 100%;
+    height: 100%;
+}
+
+.shared__selection {
+    width: 100%;
+    height: calc(100% - 34px);
+}
+
+.shared_buttons button {
+    margin-top: 0px;
+}
+
+.shared_buttons {
+    height: 32px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shared__selected {
+    width: (100%-40px);
+    height: calc(100% - 74px);
+    border: solid 1px hsl(0, 0%, 80%);
+    background-color: hsl(0, 0%, 100%);
+    margin: 20px;
+
+}

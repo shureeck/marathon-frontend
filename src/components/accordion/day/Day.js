@@ -10,8 +10,10 @@ const Day = (props) => {
     const day = props.tittle;
     const id = `${props.id}${day}`;
     const schedule = props.schedule;
+    const line = `${props.line} > ${day}`
+
     const graficComponent = schedule.map((item) => {
-        return  (<Grafic id={id} onRemoveClick={removClickHandler} data={item} className='day_grafic'></Grafic>);
+        return  (<Grafic id={id} onRemoveClick={removClickHandler} line={line} data={item} className='day_grafic'></Grafic>);
     });
 
     return (<div className='day'>

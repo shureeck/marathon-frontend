@@ -7,3 +7,14 @@
     margin-right: 15px;
     border-radius: 15px;
 }
+
+@media only screen and (max-width: 600px) {
+    .arch_table.description, .arch_table.date {
+    width: 0px;
+    display: none;
+ }
+ .arch_table.name{
+    width: 100%;
+ }
+  
+    }

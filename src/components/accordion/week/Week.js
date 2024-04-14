@@ -11,7 +11,7 @@ const Week = (props) => {
     const id = week;
     const days = props.days;
     const daysComponent = days.map((item) => {
-        return <Day key={id + item.day} onRemoveClick={removeClickHandler} id={id} tittle={item.day} schedule={item.grafic} />;
+        return <Day key={id + item.day} line={week} onRemoveClick={removeClickHandler} id={id} tittle={item.day} schedule={item.grafic} />;
     });
 
     return (<div className='week'>

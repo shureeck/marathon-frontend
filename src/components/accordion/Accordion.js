@@ -5,14 +5,19 @@ import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 import { useNavigate } from 'react-router-dom';
 import api from '../../Api';
 
+import Shared from './shared/Shared';
+//import { link } from 'fs';
+
 const Accordion = () => {
     const [posts, setPosts] = useState([]);
     const [marathonName, setMarathonName] = useState();
+    const [modalOpen, setIsOpen] = React.useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
-        const id = queryParameters.get('id');
+        const selected = localStorage.getItem('selected');
+        const id = queryParameters.get('id') ? queryParameters.get('id') : selected;
         const param = id ? `?id=${id}` : '';
         api().get(`/${param}`)
             .then(response => {
@@ -69,6 +74,9 @@ const Accordion = () => {
         }
     }
 
+    const onShareCLick = () => { setIsOpen(true); }
+    const onShareCancelCLick = () => { setIsOpen(false); }
+
     console.log(posts);
     const weekSlist = posts.length > 0
         ? posts.map((week) => {
@@ -76,8 +84,14 @@ const Accordion = () => {
         })
         : <ProgressIndicator />;
     return <div className='accordion'>
-        <h2 className='accordion__h2' key="h2">{marathonName}</h2>
+        <div>
+            <h2 className='accordion__h2' key="h2">{marathonName}
+            </h2>
+        </div>
+        {/*  <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button>*/}
         {weekSlist}
+        {/* <Shared isOpen={modalOpen} onCancelClick={onShareCancelCLick}></Shared> */}
+
     </div>;
 
 };

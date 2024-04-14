@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode';
 const Recipe = () => {
     const [recipe, setRecipe] = useState();
     const [title, setTittle] = useState();
+    const [line, setLine] = useState('');
     const [list, setList] = useState([]);
     const [hidden, setHidden] = useState(true);
     const [token, setToken] = useToken()
@@ -15,9 +16,9 @@ const Recipe = () => {
 
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
-        if (queryParameters.size === 1) {
+        if (queryParameters.size > 0) {
             const dish = queryParameters.get('dish');
-
+            setLine(queryParameters.get('line') ? queryParameters.get('line') : '');
             api().get(`?dish=${dish}`)
                 .then(response => {
                     console.log(response.data);
@@ -88,6 +89,7 @@ const Recipe = () => {
 
     return (<div className='recipe'>
         {editControl}
+        <a className='line' href='/'>{line}</a>
         <div><h2>{title}</h2></div>
         <div dangerouslySetInnerHTML={{ __html: recipe }}></div>
     </div>);

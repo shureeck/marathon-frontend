@@ -46,3 +46,7 @@
     background-color: #fee6d1;
 }
 
+a.line{
+    display: flex;
+}
+
