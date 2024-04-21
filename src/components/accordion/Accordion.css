@@ -3,6 +3,12 @@ h2.accordion__h2{
     color: #F2F2e4;
 }
 
+.errorText{
+    color: #F2F2e4;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .accordion__button{
    display:flex;
     width: 140px;

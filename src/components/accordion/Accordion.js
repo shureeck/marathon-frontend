@@ -9,11 +9,13 @@ import Shared from './shared/Shared';
 //import { link } from 'fs';
 
 const Accordion = () => {
+    const [loader, showLoader] = useState(true)
     const [posts, setPosts] = useState([]);
     const [marathonName, setMarathonName] = useState();
-    const [modalOpen, setIsOpen] = React.useState(false);
+    const [modalOpen, setIsOpen] = useState(false);
+    const [marathonId, setMarathonId] = useState([]);
     const navigate = useNavigate();
-
+    let errorText = <div className='errorText'>Немає призначеного марафону</div>;
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
         const selected = localStorage.getItem('selected');
@@ -22,9 +24,13 @@ const Accordion = () => {
         api().get(`/${param}`)
             .then(response => {
                 console.log("RESPONSE", response);
-                setPosts(response.data);
+                showLoader(false);
+                setMarathonId(response.data.marathonId);
+                setPosts(response.data.weeks);
             })
             .catch(error => {
+                showLoader(false);
+                errorText = <div className='errorText'>{error.response}</div>;
                 const status = error.response.status;
                 console.error("ERROR", status);
                 if (status === 401) {
@@ -74,23 +80,30 @@ const Accordion = () => {
         }
     }
 
-    const onShareCLick = () => { setIsOpen(true); }
-    const onShareCancelCLick = () => { setIsOpen(false); }
+    const onShareCLick = () => {
+        setIsOpen(true);
+    }
+    const onShareCancelCLick = () => {
+        setIsOpen(false);
+    }
 
     console.log(posts);
-    const weekSlist = posts.length > 0
-        ? posts.map((week) => {
-            return (<Week onRemoveClick={removeClickHandler} key={week.week} week={week.week} days={week.days}></Week>);
-        })
-        : <ProgressIndicator />;
+    let weekSlist = <ProgressIndicator />;
+    if (!loader) {
+        weekSlist = posts.length > 0
+            ? posts.map((week) => {
+                return (<Week onRemoveClick={removeClickHandler} key={week.week} week={week.week} days={week.days}></Week>);
+            })
+            : errorText;
+    }
     return <div className='accordion'>
         <div>
             <h2 className='accordion__h2' key="h2">{marathonName}
             </h2>
         </div>
-        {/*  <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button>*/}
+        {/* <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button> */ }
         {weekSlist}
-        {/* <Shared isOpen={modalOpen} onCancelClick={onShareCancelCLick}></Shared> */}
+        {/* <Shared isOpen={modalOpen} marathonId={marathonId} onCancelClick={onShareCancelCLick}></Shared> */}
 
     </div>;
 
