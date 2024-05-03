@@ -38,7 +38,7 @@ const Grafic = (props) => {
         const lineParam = schedule.length === 0 ? '' : `&line=${schedule}`;
         return <div key={Object.values(item)} className='grafic__a'>
 
-            <a onClick={onLinkClick} href={`/cooking?dish=${Object.values(item)}${lineParam}`}>{Object.keys(item)}</a>
+            <a onClick={onLinkClick} href={`/cooking?dish=${item.id}${lineParam}`}>{item.title}</a>
             {removeBtn}
         </div>
 
