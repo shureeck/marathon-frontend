@@ -57,7 +57,7 @@ const Marathon = () => {
         }
 
         if (window.confirm(`Видалити "${object.food.title}" у ${object.day} ${object.schedule} (${object.time}) ${object.week} `)) {
-            api().delete('/', { params: obj }).then(response => {
+            api().delete('/', { params: { ...obj, food: obj.food.id } }).then(response => {
                 console.log(response.data);
             })
                 .catch(error => {
