@@ -1,6 +1,5 @@
 import './App.css';
-import './components/accordion/Accordion';
-import Accordion from './components/accordion/Accordion';
+import Marathon from './components/marathon/Marathon';
 import AddRecipe from './components/recipe_form/AddRecipe';
 import AddToMarathon from './components/marathon_form/AddToMarathon';
 import { Routes, Route } from 'react-router-dom';
@@ -27,13 +26,12 @@ function App() {
   const menu = [
     { name: 'Марафон', path: '/' },
     { name: 'Всi рецепти', path: '/all' },
-    { name: 'Архів', path: '/archive' },
-    { name: 'Недоданi до меню', path: '/unassigned', disabled: true },
+    { name: 'Архів', path: '/archive' }
   ];
 
   const routes = [<Route key='cooking' path='/cooking' element={<Recipe />} />,
   <Route key='login' path='/login' element={<Login setToken={setToken} />} />,
-  <Route key='main' path='/' element={<Accordion />} />,
+  <Route key='main' path='/' element={<Marathon />} />,
   <Route key='all' path='/all' element={<All />} />,
   <Route key='archive' path='/archive' element={<Archive />} />,
   ];

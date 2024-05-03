@@ -19,8 +19,10 @@ const Grafic = (props) => {
         const sceduleName = props.data.name;
         const scheduleTime = props.data.time;
         const obj = {
-            food: id,
-            foodName: text,
+            food: {
+                id: id,
+                title: text
+            },
             schedule: sceduleName,
             time: scheduleTime,
         }
@@ -33,7 +35,7 @@ const Grafic = (props) => {
         let removeBtn = "";
         if (typeof token !== 'undefined') {
             const tokenDecoded = jwt_decode(token);
-            removeBtn = (props.onRemoveClick && tokenDecoded.role === 'Admin') ? <DishControl id={Object.values(item)} food={Object.keys(item)} onRemoveClick={removClickHandler} /> : "";
+            removeBtn = (props.onRemoveClick && tokenDecoded.role === 'Admin') ? <DishControl id={item.id} food={item.title} onRemoveClick={removClickHandler} /> : "";
         }
         const lineParam = schedule.length === 0 ? '' : `&line=${schedule}`;
         return <div key={Object.values(item)} className='grafic__a'>

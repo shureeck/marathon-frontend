@@ -1,19 +1,10 @@
 import { useState, useEffect } from 'react';
-import Grafic from '../accordion/grafic/Grafic';
+import Grafic from '../marathon/grafic/Grafic';
 import './All.css'
 import api from '../../Api';
 import { useNavigate } from 'react-router-dom';
-const value = JSON.parse(`[{"name": "С","food": [{"Торт \\"Мурашник\\"": "44"},{"Сливовий пиріг": "43"},{"Сирний пиріг": "45"}]},
-{"name": "В","food": [{"Перекус": "20"}]},
-{"name": "Ц","food": [{"Перекус": "20"}]},
-{"name": "А","food": [{"Перекус": "20"}]},
-{"name": "Щ","food": [{"Перекус": "20"}]},
-{"name": "М","food": [{"Перекус": "20"}]},
-{"name": "И","food": [{"Перекус": "20"}]},
-{"name": "О","food": [{"Смажена картопля з тунцем/курячим філе": "46"},{"Картопляна запіканка з печінкою": "47"}]},
-{"name": "Я","food": [{"Фрукти": "17"},{"Пастила": "18"}]}]`);
 
-const All = (props) => {
+const All = () => {
     const [value, setValue] = useState([]);
     const [data, setData] = useState(value);
     const navigate = useNavigate();

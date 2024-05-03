@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import './Accordion.css';
+import './Marathon.css';
 import Week from './week/Week';
 import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 import { useNavigate } from 'react-router-dom';
 import api from '../../Api';
-
 import Shared from './shared/Shared';
 //import { link } from 'fs';
 
-const Accordion = () => {
+const Marathon = () => {
     const [loader, showLoader] = useState(true)
     const [posts, setPosts] = useState([]);
     const [marathonName, setMarathonName] = useState();
     const [modalOpen, setIsOpen] = useState(false);
     const [marathonId, setMarathonId] = useState([]);
+
     const navigate = useNavigate();
+
     let errorText = <div className='errorText'>Немає призначеного марафону</div>;
+
     useEffect(() => {
         const queryParameters = new URLSearchParams(window.location.search);
         const selected = localStorage.getItem('selected');
         const id = queryParameters.get('id') ? queryParameters.get('id') : selected;
         const param = id ? `?id=${id}` : '';
+
         api().get(`/${param}`)
             .then(response => {
                 console.log("RESPONSE", response);
@@ -53,7 +56,7 @@ const Accordion = () => {
             marathon: marathonName
         }
 
-        if (window.confirm(`Видалити "${object.foodName}" у ${object.day} ${object.schedule} (${object.time}) ${object.week} `)) {
+        if (window.confirm(`Видалити "${object.food.title}" у ${object.day} ${object.schedule} (${object.time}) ${object.week} `)) {
             api().delete('/', { params: obj }).then(response => {
                 console.log(response.data);
             })
@@ -65,16 +68,16 @@ const Accordion = () => {
             const day = week.days.filter((item) => { return item.day === object.day })[0];
             const grafic = day.grafic.filter((item) => { return item.name === object.schedule && item.time === object.time })[0];
             for (let dish of grafic.food) {
-                if (Object.values(dish)[0] === object.food) {
+                if (dish.id === object.food.id &&
+                    dish.title === object.food.title) {
                     grafic.food.splice(grafic.food.indexOf(dish), 1);
-                    if (grafic.food.length === 0) {
-                        console.log(day.grafic.indexOf(grafic))
-                        day.grafic.splice(day.grafic.indexOf(grafic), 1);
-                        if (day.grafic.length === 0) {
-                            week.days.splice(week.days.indexOf(day), 1);
-                        }
-                    }
                 }
+            }
+            if (grafic.food.length === 0) {
+                day.grafic.splice(day.grafic.indexOf(grafic), 1);
+            }
+            if (day.grafic.length === 0) {
+                week.days.splice(week.days.indexOf(day), 1);
             }
             setPosts(tmpArray);
         }
@@ -86,8 +89,6 @@ const Accordion = () => {
     const onShareCancelCLick = () => {
         setIsOpen(false);
     }
-
-    console.log(posts);
     let weekSlist = <ProgressIndicator />;
     if (!loader) {
         weekSlist = posts.length > 0
@@ -101,7 +102,7 @@ const Accordion = () => {
             <h2 className='accordion__h2' key="h2">{marathonName}
             </h2>
         </div>
-        {/* <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button> */ }
+        {/* <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button> */}
         {weekSlist}
         {/* <Shared isOpen={modalOpen} marathonId={marathonId} onCancelClick={onShareCancelCLick}></Shared> */}
 
@@ -109,4 +110,4 @@ const Accordion = () => {
 
 };
 
-export default Accordion;
+export default Marathon;
