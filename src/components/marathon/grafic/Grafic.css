@@ -2,8 +2,8 @@
   --color-bg: #EEEDEB;
   --color-title: #0E1C4E;
 
-  --color-summary-1:  #FFF6EE;
-  --color-summary-1-highlight: #FD974F;
+  --color-summary-1:  #FCFDFE;
+  --color-summary-1-highlight: #D8412F;
   --color-summary-2: #FAFAFF;
   --color-summary-2-highlight: #B4B3FF;
   --color-summary-3: #FFF0F3;
@@ -73,7 +73,7 @@ div.grafic {
   content: "";
   display: inline-block;
   border: 10px solid transparent;
-  border-left: 10px solid #FD974F;
+  border-left: 10px solid #D8412F;
   ;
 }
 
@@ -85,7 +85,7 @@ div.grafic {
 }
 
 div.grafic__food {
-  background: rgba(0, 0, 0, .03);
+  background: rgba(245, 202, 153, .03);
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.5s;

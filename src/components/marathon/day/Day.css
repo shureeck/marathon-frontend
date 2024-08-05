@@ -14,8 +14,8 @@ div.day{
   visibility: 0;  
 }
  .day__h3{
-  background:rgba(198, 0, 0, 0.75);
-  color:#FFF;
+  background:rgba(245, 202, 153, 0.75);
+  color:#333333;
   padding:1em;
   position: relative;
 }
@@ -23,7 +23,7 @@ div.day{
   content:"";
   display: inline-block;
   border: 10px solid transparent;
-  border-left:10px solid white;
+  border-left:10px solid rgb(84, 84, 84);
 }
 .day__label{
   cursor: pointer;
@@ -41,7 +41,7 @@ div.day__grafic{
 }
 input.day__input:checked ~ .day__h3 .day__label::before{
   border-left:10px solid transparent;
-  border-top:10px solid white;
+  border-top:10px solid rgb(84, 84, 84);
 
 }
 input.day__input:checked ~ .day__h3 ~ div.day__grafic{

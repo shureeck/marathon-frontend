@@ -1,7 +1,7 @@
 .kebab_items{
     position:absolute;
-    background-color: #FEF2e4;
-    border-left: 15px solid #fd974f;
+    background-color: #fcfdfe;
+    border-left: 15px solid #d8412f;
     right: -10px;
     top: 45px;
     z-index: 10;
@@ -13,13 +13,14 @@
     width: 130px;
     color: #636363;
     font-weight: bold;
-    border: 1px solid #805a3b;
+    border: 1px solid #d8412f;
     vertical-align: top;
+    background-color: #fcfdfe;
 }
 
 
 .kebab__buttons:disabled {
-    border: 1px solid #805a3b;
+    border: 1px solid #fcfdfe;
     background-color: #f1f1f1;
     color: #9a9a9a;
 }

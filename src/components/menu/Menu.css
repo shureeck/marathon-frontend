@@ -2,7 +2,7 @@
     margin-top: 10px;
     width: 100vw;
     height: 43px;
-    border-bottom: 1px solid rgba(90, 116, 148, 0.4) ;
+    border-bottom: 1px solid rgba(216, 65, 47, 0.4) ;
 }
 
 .menu__buttons {
@@ -10,14 +10,15 @@
     width: 100px;
     color: #636363;
     font-weight: bold;
-    border: 1px solid #805a3b;
-    background-color: #FEF2e4;
+    border: 1px solid #f5ca99;
+    background-color: #fcfdfe;
     vertical-align: top;
 }
 
 .menu__buttons:hover {
-    border: 1px solid #fd974f;
-    background-color: #fcd9b0;
+    border: 1px solid #d8412f;
+    background-color: #d8412f;
+    color: #fcfdfe;
 }
 
 .menu__buttons:disabled {

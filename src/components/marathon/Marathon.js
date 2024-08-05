@@ -104,7 +104,7 @@ const Marathon = () => {
         </div>
         {/* <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button> */}
         {weekSlist}
-        {/* <Shared isOpen={modalOpen} marathonId={marathonId} onCancelClick={onShareCancelCLick}></Shared> */}
+        { <Shared isOpen={modalOpen} marathonId={marathonId} onCancelClick={onShareCancelCLick}></Shared> }
 
     </div>;
 

@@ -21,7 +21,7 @@
 .kebab span{
     width: 10px;
     height: 10px;
-    background: #FEF2e4;
+    background: #d8412f;
     position: absolute;
 }
 .kebab span:nth-child(1){
