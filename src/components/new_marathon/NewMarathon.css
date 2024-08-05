@@ -5,7 +5,7 @@
 }
 
 .NewMarathon h2 {
-    color: #F2F2e4;
+    color: #d8412f;
 }
 
 .NewMarathon__input,
@@ -32,6 +32,6 @@
 
 .NewMarathon__label {
     text-align: left;
-    color: #ffffff;
+    color: #000;
     font-style: italic;
 }

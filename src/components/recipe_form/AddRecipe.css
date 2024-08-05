@@ -1,10 +1,11 @@
 .rdw-editor-wrapper {
-    background-color: #FEF2e4;
+    background-color: #fcfdfe;
     min-height: 500px;
     border: 1px solid #f1f1f1;
 }
-.AddRecipe h2{
-    color: #F2F2e4;
+
+.AddRecipe h2 {
+    color: #d8412f;
 }
 
 .editor {
@@ -32,14 +33,14 @@
     padding-left: 10px;
 }
 
-.AddRecipe__error{
-    border: 1px solid #ff5b5b;
+.AddRecipe__error {
+    border: 1px solid #d8412f;
 
 }
 
 .AddRecipe__form label {
     text-align: left;
-    color: #ffffff;
+    color: #000;
     font-style: italic;
 }
 
@@ -62,4 +63,3 @@
     border: 1px solid #c3c3c3;
     background-color: #f1f1f1;
 }
-
