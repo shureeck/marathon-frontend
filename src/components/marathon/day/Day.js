@@ -1,5 +1,47 @@
-import './Day.css';
 import Grafic from '../grafic/Grafic';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+
+const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+    border: `0`,
+    '&:not(:last-child)': {
+        borderBottom: 0,
+    },
+    '&::before': {
+        display: 'none',
+    },
+    margin: `2em`,
+    backgroundColor:`rgba(255, 255, 255, 0.0)`,
+    '@media only screen and (max-width: 600px)': {
+        margin: '0',
+        marginBottom: '10px',
+    }
+}));
+
+const AccordionSummary = styled((props) => (
+    <MuiAccordionSummary
+        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+        {...props}
+    />
+))(({ theme }) => ({
+    flexDirection: 'row-reverse',
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(90deg)',
+    },
+    backgroundColor: `rgba(245, 202, 153, 0.75)`,
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    backgroundColor: `rgba(255, 255, 255, 0.1)`,
+    boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.2)`,
+    
+}));
 
 const Day = (props) => {
     const removClickHandler = (Object) => {
@@ -11,17 +53,29 @@ const Day = (props) => {
     const schedule = props.schedule;
     const line = `${props.line} > ${day}`
 
-    const graficComponent = schedule.map((item) => {    
-        return  (<Grafic id={id} onRemoveClick={removClickHandler} line={line} data={item} className='day_grafic'></Grafic>);
+    const graficComponent = schedule.map((item) => {
+        return (<Grafic id={id} onRemoveClick={removClickHandler} line={line} data={item} className='day_grafic'></Grafic>);
     });
 
-    return (<div className='day'>
-        <input className='day__input' type="checkbox" id={id}></input>
-        <h3 className='day__h3'><label className='day__label' htmlFor={id}><div className='day__name'>{day}</div></label></h3>
-        <div className='day__grafic'>
-            {graficComponent}
-        </div>
-    </div>);
+    return <Accordion>
+        <AccordionSummary
+            expandIcon={<ArrowForwardIosSharpIcon />}
+            aria-controls={id}
+            id={id}
+        >
+            <Typography>
+                <h3>
+                    <div className='day__name'>{day}</div>
+                </h3>
+            </Typography>
+        </AccordionSummary >
+        <AccordionDetails >
+            <Typography>
+                {graficComponent}
+            </Typography>
+        </AccordionDetails>
+    </Accordion>
+
 };
 
 export default Day;

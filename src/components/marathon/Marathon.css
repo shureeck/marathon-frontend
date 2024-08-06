@@ -34,3 +34,11 @@ h2.accordion__h2{
     background-color: #fcd9b0;
     border: 1px solid #fd974f;
 }
+
+
+@media only screen and (max-width: 600px) {
+    h2.accordion__h2{
+      font-size: large;
+    }
+  
+    }

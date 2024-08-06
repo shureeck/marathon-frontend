@@ -3,6 +3,52 @@ import './Grafic.css'
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import useToken from '../../../useToken';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+
+const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+    border: `0`,
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&::before': {
+      display: 'none',
+    },
+    borderLeft: `10px solid #D8412F`,
+    marginRight: `2em`,
+    marginLeft: `2em`,
+
+    '@media only screen and (max-width: 600px)': {
+        margin: '0',
+    }
+
+}));
+
+const AccordionSummary = styled((props) => (
+    <MuiAccordionSummary
+        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+        {...props}
+    />
+))(({ theme }) => ({
+    flexDirection: 'row-reverse',
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(90deg)',
+    },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    background: `rgba(245, 202, 153, .03)`,
+    boxShadow: `0 0 5px 0 rgba(0, 0, 0, 0.2)`,
+    textAlign: `left`,
+    borderRadius: `5px`,
+    margin:`15px`
+}));
 
 const Grafic = (props) => {
     const [token, setToken] = useToken();
@@ -47,13 +93,25 @@ const Grafic = (props) => {
     });
 
     const id = `${props.id}${data.name}${data.time}`;
-    return (<div className={clazz} id={props.id}>
-        <input defaultChecked className="grafic__input" type="checkbox" id={id}></input>
-        <h3 className="grafic__h3"><label className="grafic__label" htmlFor={id}><div className='grafic__name'>{data.name}</div><div className='grafic__time'>{data.time}</div></label></h3>
-        <div className='grafic__food'>
-            {foodLinks}
-        </div>
-    </div>);
+    return <Accordion classes={"grafic"} defaultExpanded>
+        <AccordionSummary
+            expandIcon={<ArrowForwardIosSharpIcon />}
+            aria-controls={id}
+            id={id}
+        >
+            <Typography>
+                <h3 className="grafic__h3">
+                    <div className='grafic__name'>{data.name}</div>
+                    <div className='grafic__time'>{data.time}</div>
+                </h3>
+            </Typography>
+        </AccordionSummary >
+        <AccordionDetails >
+            <Typography>
+                {foodLinks}
+            </Typography>
+        </AccordionDetails>
+    </Accordion>
 }
 
 export default Grafic;
