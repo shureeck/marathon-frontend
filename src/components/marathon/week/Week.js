@@ -21,8 +21,8 @@ const Accordion = styled((props) => (
     '@media only screen and (max-width: 600px)': {
         margin: '5px',
         marginBottom: '20px',
-    }
-
+    },
+    "h2":{color:"#fff"}
 }));
 
 const AccordionSummary = styled((props) => (
