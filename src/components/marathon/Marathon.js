@@ -3,9 +3,34 @@ import './Marathon.css';
 import Week from './week/Week';
 import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 import { useNavigate } from 'react-router-dom';
+import useToken from '../../useToken';
 import api from '../../Api';
 import Shared from './shared/Shared';
+import { styled } from '@mui/material/styles';
+import { Button } from '@mui/material';
+import jwt_decode from 'jwt-decode';
+import { Height, Share } from '@mui/icons-material';
 //import { link } from 'fs';
+
+const StyledButton = styled(Button)(({ theme }) => ({
+    display: "flex",
+    color: "#636363",
+    fontWeight: "bold",
+    backgroundColor: "#FCFDFE",
+    '&:hover': {
+        backgroundColor: "#F5CA99",
+    },
+    border: "solid 1px #F5CA99",
+    marginRight: "32px",
+    marginTop: "-30px",
+    marginLeft: "auto",
+    textTransform: 'none',
+    '@media only screen and (max-width: 600px)': {
+        margin: 'auto',
+        height: "30px",
+        with: "100x"
+    }
+}));
 
 const Marathon = () => {
     const [loader, showLoader] = useState(true)
@@ -13,6 +38,7 @@ const Marathon = () => {
     const [marathonName, setMarathonName] = useState();
     const [modalOpen, setIsOpen] = useState(false);
     const [marathonId, setMarathonId] = useState([]);
+    const [token, setToken] = useToken();
 
     const navigate = useNavigate();
 
@@ -89,6 +115,16 @@ const Marathon = () => {
     const onShareCancelCLick = () => {
         setIsOpen(false);
     }
+
+    let shareBtn = "";
+    if (typeof token !== 'undefined') {
+        const tokenDecoded = jwt_decode(token);
+        shareBtn = (tokenDecoded.role === 'Admin')
+            ? <StyledButton onClick={onShareCLick} startIcon={<Share />}>Поділитися</StyledButton>
+            : "";
+    }
+
+
     let weekSlist = <ProgressIndicator />;
     if (!loader) {
         weekSlist = posts.length > 0
@@ -101,10 +137,10 @@ const Marathon = () => {
         <div>
             <h2 className='accordion__h2' key="h2">{marathonName}
             </h2>
+            {shareBtn}
         </div>
-        {/* <button className='accordion__button' onClick={onShareCLick} type="button"><div>Поділитися</div><img src='share.png'></img></button> */}
         {weekSlist}
-        { <Shared isOpen={modalOpen} marathonId={marathonId} onCancelClick={onShareCancelCLick}></Shared> }
+        {<Shared isOpen={modalOpen} marathonId={marathonId} onCancelClick={onShareCancelCLick}></Shared>}
 
     </div>;
 
