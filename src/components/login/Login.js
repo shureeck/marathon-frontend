@@ -31,9 +31,9 @@ const navigate = useNavigate();
             <label className='Login__label'>Ім'я користувача</label>
             <input type='text' placeholder='e-mail' className='Login__input' onChange={loginChangeHandler} value={username}></input>
             <label className='Login__label'>Пароль</label>
-            <input type='password' placeholder='password' className='Login__input' onChange={passChangeHandler} value={password}></input>
-            <button className='Login__button' onClick={onLoginClick} type='button'>Login</button>
-            <button className='Login__button' type='button'>Cancel</button>
+            <input type='password' placeholder='пароль' className='Login__input' onChange={passChangeHandler} value={password}></input>
+            <button className='Login__button' onClick={onLoginClick} type='button'>Увійти</button>
+            <button className='Login__button' type='button'>Демо версія</button>
         </form>
     </div>);
 }

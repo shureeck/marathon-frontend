@@ -4,6 +4,8 @@ import './Recipe.css'
 import { useState, useEffect } from 'react';
 import useToken from '../../useToken';
 import jwt_decode from 'jwt-decode';
+import { IconButton } from '@mui/material';
+import { EditOutlined, NotListedLocationOutlined } from '@mui/icons-material';
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState();
@@ -80,9 +82,9 @@ const Recipe = () => {
         const tokenDecoded = jwt_decode(token);
         editControl = tokenDecoded.role === 'Admin'
             ? (<div className='recipe__imgs'>
-                <div onClick={onEditClick}><img src='edit.png'></img></div>
+                <IconButton sx={{ float: "right", color: "#FE7A47" }} onMouseDown={onImageClick} onMouseUp={onUnClick}><NotListedLocationOutlined /></IconButton>
+                <IconButton sx={{ float: "right", color: "#FE7A47" }} onClick={onEditClick}><EditOutlined /></IconButton>
                 <ul hidden={hidden} >{marathonsLi}</ul>
-                <div onMouseDown={onImageClick} onMouseUp={onUnClick}><img src='info.png'></img></div>
             </div>)
             : "";
     }

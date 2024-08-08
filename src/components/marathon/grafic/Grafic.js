@@ -15,10 +15,10 @@ const Accordion = styled((props) => (
 ))(({ theme }) => ({
     border: `0`,
     '&:not(:last-child)': {
-      borderBottom: 0,
+        borderBottom: 0,
     },
     '&::before': {
-      display: 'none',
+        display: 'none',
     },
     borderLeft: `10px solid #D8412F`,
     marginRight: `2em`,
@@ -47,7 +47,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     boxShadow: `0 0 5px 0 rgba(0, 0, 0, 0.2)`,
     textAlign: `left`,
     borderRadius: `5px`,
-    margin:`15px`
+    margin: `15px`
 }));
 
 const Grafic = (props) => {
@@ -60,8 +60,8 @@ const Grafic = (props) => {
     }
 
     const removClickHandler = (event) => {
-        const id = event.target.parentElement.parentElement.id;
-        const text = (event.target.parentElement.parentElement.getAttribute('food'));
+        const id = event.target.parentElement.id;
+        const text = (event.target.parentElement.getAttribute('food'));
         const sceduleName = props.data.name;
         const scheduleTime = props.data.time;
         const obj = {
