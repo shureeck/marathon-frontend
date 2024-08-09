@@ -22,7 +22,7 @@ const Accordion = styled((props) => (
         margin: '5px',
         marginBottom: '20px',
     },
-    "h2":{color:"#fff"}
+    "h2": { color: "#fff" }
 }));
 
 const AccordionSummary = styled((props) => (
@@ -68,18 +68,16 @@ const Week = (props) => {
             aria-controls={id}
             id={id}
         >
-            <Typography>
-                <h2>
-                    <div className='week__name'>{week}</div>
-                </h2>
+            <Typography sx={{ fontSize: '1.5em', fontWeight: 'bold', }}>
+                {week}
             </Typography>
         </AccordionSummary >
         <AccordionDetails >
-            <Typography>
+            <Typography component="span">
                 {daysComponent}
             </Typography>
         </AccordionDetails>
-    </Accordion>
+    </Accordion >
 }
 
 export default Week;

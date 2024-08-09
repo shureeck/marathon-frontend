@@ -93,21 +93,18 @@ const Grafic = (props) => {
     });
 
     const id = `${props.id}${data.name}${data.time}`;
-    return <Accordion classes={"grafic"} defaultExpanded>
+    return <Accordion defaultExpanded>
         <AccordionSummary
             expandIcon={<ArrowForwardIosSharpIcon />}
             aria-controls={id}
             id={id}
         >
-            <Typography>
-                <h3 className="grafic__h3">
-                    <div className='grafic__name'>{data.name}</div>
-                    <div className='grafic__time'>{data.time}</div>
-                </h3>
+            <Typography sx={{ fontSize: '1.17em', fontWeight: 'bold', }}>
+                {` ${data.name} ${data.time}`}
             </Typography>
         </AccordionSummary >
         <AccordionDetails >
-            <Typography>
+            <Typography component="span">
                 {foodLinks}
             </Typography>
         </AccordionDetails>

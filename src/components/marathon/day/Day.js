@@ -17,7 +17,7 @@ const Accordion = styled((props) => (
         display: 'none',
     },
     margin: `2em`,
-    backgroundColor:`rgba(255, 255, 255, 0.0)`,
+    backgroundColor: `rgba(255, 255, 255, 0.0)`,
     '@media only screen and (max-width: 600px)': {
         margin: '0',
         marginBottom: '10px',
@@ -40,7 +40,7 @@ const AccordionSummary = styled((props) => (
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     backgroundColor: `rgba(255, 255, 255, 0.1)`,
     boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.2)`,
-    
+
 }));
 
 const Day = (props) => {
@@ -54,7 +54,7 @@ const Day = (props) => {
     const line = `${props.line} > ${day}`
 
     const graficComponent = schedule.map((item) => {
-        return (<Grafic id={id} onRemoveClick={removClickHandler} line={line} data={item} className='day_grafic'></Grafic>);
+        return (<Grafic id={id} key={id+schedule.indexOf(item)} onRemoveClick={removClickHandler} line={line} data={item} className='day_grafic'></Grafic>);
     });
 
     return <Accordion>
@@ -63,14 +63,12 @@ const Day = (props) => {
             aria-controls={id}
             id={id}
         >
-            <Typography>
-                <h3>
-                    <div className='day__name'>{day}</div>
-                </h3>
+            <Typography sx={{ fontSize: '1.17em', fontWeight: 'bold', }}>
+                {day}
             </Typography>
         </AccordionSummary >
         <AccordionDetails >
-            <Typography>
+            <Typography component="span">
                 {graficComponent}
             </Typography>
         </AccordionDetails>

@@ -37,7 +37,7 @@ const Marathon = () => {
     const [posts, setPosts] = useState([]);
     const [marathonName, setMarathonName] = useState();
     const [modalOpen, setIsOpen] = useState(false);
-    const [marathonId, setMarathonId] = useState([]);
+    const [marathonId, setMarathonId] = useState();
     const [token, setToken] = useToken();
 
     const navigate = useNavigate();
