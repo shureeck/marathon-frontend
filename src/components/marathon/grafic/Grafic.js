@@ -100,7 +100,7 @@ const Grafic = (props) => {
             id={id}
         >
             <Typography sx={{ fontSize: '1.17em', fontWeight: 'bold', }}>
-                {` ${data.name} ${data.time}`}
+                {` ${data.name} ${(data.time === null) ? "" : data.time}`}
             </Typography>
         </AccordionSummary >
         <AccordionDetails >

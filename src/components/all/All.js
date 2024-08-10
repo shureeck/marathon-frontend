@@ -42,9 +42,9 @@ const All = () => {
 
     const letters = [];
     const links = data.map((item) => {
-        const leter = item.name;
+        const leter = item.name.toUpperCase();
         letters.push(<a key={`a_${leter}`} href={`#${leter}`}>{leter}</a>)
-        return <Grafic key={leter} id={leter} data={item} className='day_grafic'></Grafic>
+        return <Grafic key={leter} id={leter} data={{...item, name:item.name.toUpperCase()}} className='day_grafic'></Grafic>
     });
 
     return (<div className="All__body">

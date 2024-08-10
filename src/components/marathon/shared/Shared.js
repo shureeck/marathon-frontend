@@ -52,8 +52,19 @@ const Shared = (props) => {
             key={item.value} id={item.value} label={item.label} onDelete={handleDelete} />
     });
 
+    const onShareClick = () => {
+        const requesBody = {
+            marathonId: props.marathonId,
+            users: sharedUsers.map((p)=>{return p.value}),
+        }
+        console.log("Request to access:");
+        console.log(requesBody);
+        props.onCancelClick();
+
+        api().post(`/share`, requesBody);
+    }
+
     useEffect(() => {
-        console.log(props.marathonId);
         if (props.marathonId) {
             Promise.all([api().get(`/users?marathonID=${props.marathonId}`), api().get('/users')
             ]).then((arr) => {
@@ -95,8 +106,8 @@ const Shared = (props) => {
             </Typography>
 
             <InputLabel sx={{ marginLeft: "5px" }} id="demo-select-small-label">Користувачі без доступу</InputLabel>
-            <Select labelId="demo-select-small-label" size="small" sx={{ margin: '5px', display: 'flex' }} onChange={selectChangeHandler}>
-                {users.map((p) => { return <MenuItem value={p.value}>{p.label}</MenuItem> })}
+            <Select labelId="demo-select-small-label" size="small"  sx={{ margin: '5px', display: 'flex' }} onChange={selectChangeHandler}>
+                {users.map((p) => { return <MenuItem key={p.value} value={p.value}>{p.label}</MenuItem> })}
             </Select>
             <InputLabel sx={{ marginLeft: "5px" }} id="demo-select-small-label">Користувачі марафону</InputLabel>
             <div className="shared__selected">
@@ -107,7 +118,7 @@ const Shared = (props) => {
 
             <div className="shared_buttons">
                 <Button onClick={props.onCancelClick} name="Скасувати" />
-                <Button onClick={props.onCancelClick} name="Поділитись" />
+                <Button onClick={onShareClick} name="Поділитись" />
             </div>
         </Box>
     </Modal >);
