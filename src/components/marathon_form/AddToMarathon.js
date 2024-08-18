@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const AddToMarathon = () => {
     const navigate = useNavigate();
     const [week, setWeek] = useState('1');
-    const [day, setDay] = useState();
+    const [day, setDay] = useState([]);
     const [eatTime, setEatTime] = useState();
     const [food, setFood] = useState();
     const [marathoId, setMarathonId] = useState('1');
