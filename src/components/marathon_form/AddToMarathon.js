@@ -17,16 +17,16 @@ const AddToMarathon = () => {
     const [dishes, setDishes] = useState();
     const [sceduler, setSceduler] = useState();
 
-
     const onSaveClick = () => {
         const marathon = {
-            marathon_id: marathoId.value,
+            marathon_id: marathoId,
             week: week,
-            day: Array.isArray(day) ? day.map((d) => { return d.value }) : [day.value],
-            sceduler: eatTime.value,
-            food: food.value,
+            day: day,
+            sceduler: eatTime,
+            food: food,
             quantity: quantity
         };
+
         api().post('/', marathon)
             .then(response => {
                 navigate(`/`, { replace: true });
@@ -39,6 +39,7 @@ const AddToMarathon = () => {
                 }
                 alert(error.response.data);
             });
+
         console.log(marathon);
     }
 
@@ -47,7 +48,7 @@ const AddToMarathon = () => {
         if (queryParameters.size === 2) {
             let idParam = queryParameters.get('id');
             let tittleParam = queryParameters.get('tittle');
-            setFood({ value: idParam, label: tittleParam });
+            setFood(idParam);
             setDishes({ [idParam]: tittleParam });
         } else {
             api().get('/dishes')
@@ -55,7 +56,7 @@ const AddToMarathon = () => {
                     setDishes(response.data);
                     const tmp = Object.entries(response.data);
                     const defaultFood = { value: tmp[tmp.length - 1][0], label: tmp[tmp.length - 1][1] };
-                    setFood(defaultFood);
+                    setFood(defaultFood.value);
 
                 })
                 .catch(error => {
@@ -84,7 +85,7 @@ const AddToMarathon = () => {
                 setMarathonList(obj);
                 const keys = Object.entries(obj);
                 const defaultMarathon = { value: keys[keys.length - 1][0], label: keys[keys.length - 1][1] };
-                setMarathonId(defaultMarathon);
+                setMarathonId(defaultMarathon.value);
             })
             .catch(error => {
                 console.error(error);
@@ -101,7 +102,7 @@ const AddToMarathon = () => {
                 setSceduler(response.data);
                 const tmp = Object.entries(response.data);
                 const defaultSceduler = { value: tmp[0][0], label: tmp[0][1] };
-                setEatTime(defaultSceduler);
+                setEatTime(defaultSceduler.value);
             })
             .catch(error => {
                 console.error(error);

@@ -34,13 +34,13 @@ const InputCom = (props) => {
     const onChangeHandler = (event) => {
         props.onDataChange(event.target.value);
     }
+
+
     const tittle = props.label;
     const type = props.type;
     const value = props.value
         ? props.value.value ? props.value.value : props.value
         : '';
-    console.log(value)
-
     let inputElement = undefined;
     switch (type) {
         case 'week':
@@ -81,7 +81,6 @@ const InputCom = (props) => {
                     value={value}
                     label={tittle}
                     onChange={onChangeHandler}
-                    variant='outlined'
                     multiple
                 >
                     {days}
@@ -92,7 +91,7 @@ const InputCom = (props) => {
             let options;
             if (typeof props.options !== 'undefined') {
                 options = Object.entries(props.options).map((item) => {
-                    return <MenuItem key={item[0]} value={item[0]}>{item[1]}</MenuItem>
+                    return <MenuItem key={item[0]} name={item[1]} value={item[0]}>{item[1]}</MenuItem>
                 });
             }
 
@@ -103,7 +102,6 @@ const InputCom = (props) => {
                     id="demo-simple-select-helper"
                     value={value}
                     defaultValue={value}
-
                     label={tittle}
                     onChange={onChangeHandler}
                 >
