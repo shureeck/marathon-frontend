@@ -1,65 +1,67 @@
 .rdw-editor-wrapper {
-    background-color: #fcfdfe;
-    min-height: 500px;
-    border: 1px solid #f1f1f1;
+  background-color: #fcfdfe;
+  min-height: 500px;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  z-index: 20;
 }
 
 .AddRecipe h2 {
-    color: #d8412f;
+  color: #d8412f;
 }
 
 .editor {
-
-    margin: 10px;
+  margin: 10px;
 }
 
 .AddRecipe__form {
-    margin: 20px;
+  margin: 20px;
 }
-
-.AddRecipe__form label,
-.AddRecipe__form input {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
 
 .AddRecipe__input {
-    border: 1px solid #f1f1f1;
-    height: 33px;
-    width: 100%;
-    padding-left: 10px;
+  border: 1px solid #f1f1f1;
+  height: 33px;
+  width: 100%;
+  padding-left: 10px;
 }
 
 .AddRecipe__error {
-    border: 1px solid #d8412f;
-
+  border: 1px solid #d8412f;
 }
 
-.AddRecipe__form label {
-    text-align: left;
-    color: #000;
-    font-style: italic;
+.EditorLabel {
+  display: block;
+  font-size: 16px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  position: relative;
+  text-align: left;
+  color: #000;
+  font-style: italic;
+  background-color: #ffffff;
+  width: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: -8px;
+  margin-left: 10px;
+  z-index: 1;
 }
 
 .AddRecipe__buttons {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .AddRecipe__buttons button {
-    height: 33px;
-    width: 100px;
-    color: #636363;
-    font-weight: bold;
-    margin-left: 10px;
-    margin-right: 10px;
-    border: 1px solid #f1f1f1;
-    background-color: #ffffff;
+  height: 33px;
+  width: 100px;
+  color: #636363;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid #f1f1f1;
+  background-color: #ffffff;
 }
 
 .AddRecipe__buttons button:hover {
-    border: 1px solid #c3c3c3;
-    background-color: #f1f1f1;
+  border: 1px solid #c3c3c3;
+  background-color: #f1f1f1;
 }
