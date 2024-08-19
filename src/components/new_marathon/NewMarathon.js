@@ -4,6 +4,19 @@ import './NewMarathon.css'
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import api from '../../Api';
+import TextField from '@mui/material/TextField';
+
+const textStTyle = {
+    width: "100%",
+    backgroundColor: "#FFF",
+    "& .MuiFormLabel-root": {
+        color: "#000",
+        fontSize: "20px",
+        fontStyle: "italic",
+        backgroundColor: "#fff",
+    },
+    marginBottom: "20px",
+};
 
 const NewMarathon = (props) => {
     const start = moment().add(2, 'days').format('DD.MM.YYYY');
@@ -28,7 +41,7 @@ const NewMarathon = (props) => {
         console.log(body);
         api().post('/marathon_list', body)
             .then(response => {
-            navigate('/archive');
+                navigate('/archive');
             })
             .catch(error => {
                 console.log("Error")
@@ -39,11 +52,35 @@ const NewMarathon = (props) => {
     return (<div className='NewMarathon'>
         <h2>Новий марафон</h2>
         <form>
-            <label className='NewMarathon__label'>Назва марафону</label>
-            <input type='text' className='NewMarathon__input' onChange={nameChangeHandler} value={name}></input>
-            <label className='NewMarathon__label'>Опис</label>
-            <textarea className='NewMarathon__textarea' onChange={descriptionChangeHandler} value={description}></textarea>
+            <TextField
+                sx={textStTyle}
+                type='text'
+                id="marathon-tittle"
+                label="Назва марафону"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                value={name}
+                variant="outlined"
+                onChange={nameChangeHandler}
+                size='small'
+            />
 
+            <TextField
+                sx={textStTyle}
+                type='text'
+                id="marathon-description"
+                label="Опис"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                multiline
+                rows={5}
+                value={description}
+                variant="outlined"
+                onChange={descriptionChangeHandler}
+                size='small'
+            />
             <div>
                 <Button onClick={onSaveClick} name='Зберегти'></Button>
                 <Button onClick={onCancelClick} name='Скасувати'></Button>

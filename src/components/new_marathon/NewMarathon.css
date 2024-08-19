@@ -6,32 +6,7 @@
 
 .NewMarathon h2 {
     color: #d8412f;
+    margin-bottom: 20px;
 }
 
-.NewMarathon__input,
-.NewMarathon__label,
-.NewMarathon__textarea {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 
-.NewMarathon__input,
-.NewMarathon__textarea {
-    border: 1px solid #f1f1f1;
-    height: 33px;
-    width: 100%;
-    padding-left: 10px;
-}
-.NewMarathon__textarea
- {
-    resize: none;
-    height: 99px;
-    padding-top: 10px;
-}
-
-.NewMarathon__label {
-    text-align: left;
-    color: #000;
-    font-style: italic;
-}
