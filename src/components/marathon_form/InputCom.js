@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 
 const formStyle = {
     m: 1,
-   // minWidth: '50%',
+    minWidth: '50%',
     background: '#FFF',
     '@media only screen and (max-width: 600px)': {
         minWidth: "100%"

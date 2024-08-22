@@ -31,15 +31,15 @@ const All = () => {
             setData(value);
         } else {
             let newData = structuredClone(value);
-            console.log(newData)
             newData = newData.filter((tmp) => {
-                console.log(tmp)
                 return tmp.name.toLowerCase() === search.charAt(0)
             });
             console.log(newData)
             if (newData.length > 0) {
 
-                newData[0].food = newData[0].food.filter((tmp) => { return Object.keys(tmp)[0].toLocaleLowerCase().startsWith(search) });
+                newData[0].food = newData[0].food.filter((tmp) => { 
+                    console.log( tmp)
+                    return tmp.title.toLocaleLowerCase().startsWith(search) });
             }
             setData(newData);
         }
