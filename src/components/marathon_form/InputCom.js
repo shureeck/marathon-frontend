@@ -5,7 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
-const formStyle = { m: 1, minWidth: '50%', background: '#FFF' };
+const formStyle = {
+    m: 1,
+   // minWidth: '50%',
+    background: '#FFF',
+    '@media only screen and (max-width: 600px)': {
+        minWidth: "100%"
+    }
+};
 const labelStyle = { fontSize: '20px', color: "#000", fontStyle: 'italic' };
 
 const textStTyle = {
@@ -27,7 +34,7 @@ const textStTyle = {
         overflow: "hidden",
         borderTopRightRadius: "0.25rem",
         borderBottomRightRadius: "0.25rem"
-    }
+    },
 };
 
 const InputCom = (props) => {
