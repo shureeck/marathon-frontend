@@ -13,6 +13,7 @@ import useToken from './useToken';
 import AssignMarathonToUser from './components/user_assidne_form/AssignMarathonToUser';
 import Archive from './components/archive/Archive';
 import NewMarathon from './components/new_marathon/NewMarathon';
+import Users from './components/users/Users';
 
 function App() {
   const [token, setToken] = useToken();
@@ -44,13 +45,14 @@ function App() {
     if (tokenDecoded.role === 'Admin') {
       menu.push({ name: 'Новий рецепт', path: '/recipe' });
       menu.push({ name: 'Додати до меню', path: '/menu' });
-      menu.push({name: 'Новий марафон', path: '/newmarathon'});
-      //menu.push({ name: 'Додати до марафону', path: '/assign' });
+      menu.push({ name: 'Новий марафон', path: '/newmarathon' });
+      menu.push({ name: 'Користувачі', path: '/users' });
+
       routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
       routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
       routes.push(<Route key='recipe' path="/recipe/edit" element={<AddRecipe />} />);
       routes.push(<Route key='newmarathon' path='/newmarathon' element={<NewMarathon />} />);
-      //routes.push(<Route key='assign' path='/assign' element={<AssignMarathonToUser />} />);
+      routes.push(<Route key='users' path='/users' element={<Users />} />)
     }
     signInLink = <a className='a__login' href='/login'>{user}</a>;
   }

@@ -24,15 +24,21 @@ const All = () => {
                 }
             });
     }, []);
-    
+
     const onSourceChageHandler = (event) => {
         const search = event.target.value.toLowerCase();
         if (typeof search === 'undefined' || search.length === 0) {
             setData(value);
         } else {
             let newData = structuredClone(value);
-            newData = newData.filter((tmp) => { return tmp.name.toLowerCase() === search.charAt(0) });
+            console.log(newData)
+            newData = newData.filter((tmp) => {
+                console.log(tmp)
+                return tmp.name.toLowerCase() === search.charAt(0)
+            });
+            console.log(newData)
             if (newData.length > 0) {
+
                 newData[0].food = newData[0].food.filter((tmp) => { return Object.keys(tmp)[0].toLocaleLowerCase().startsWith(search) });
             }
             setData(newData);
@@ -44,7 +50,7 @@ const All = () => {
     const links = data.map((item) => {
         const leter = item.name.toUpperCase();
         letters.push(<a key={`a_${leter}`} href={`#${leter}`}>{leter}</a>)
-        return <Grafic key={leter} id={leter} data={{...item, name:item.name.toUpperCase()}} className='day_grafic'></Grafic>
+        return <Grafic key={leter} id={leter} data={{ ...item, name: item.name.toUpperCase() }} className='day_grafic'></Grafic>
     });
 
     return (<div className="All__body">
