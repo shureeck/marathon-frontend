@@ -11,7 +11,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { Button } from '@mui/material';
-import { PersonAddOutlined } from '@mui/icons-material';
+import { Password, PersonAddOutlined } from '@mui/icons-material';
 import UsersTable from './UsersTable';
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -87,56 +87,68 @@ const Users = () => {
             username: formJson.email,
             firstname: formJson.name,
             lastname: formJson.lastname,
+            password: formJson.password,
             marathonname: []
         }
-        setUsers([newUser, ...users]);
-        setShowDialog(false);
-    }
+        api().post('/users', newUser)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+                const status = error.response.status;
+                if (status === 401) {
+                    navigate('/login');
+                }
+            });
+    setUsers([newUser, ...users]);
+    setShowDialog(false);
+}
 
-    return <div>
-        <h2>Користувачі</h2>
-        <div>
-            <StyledButton onClick={onClickHandler} startIcon={<PersonAddOutlined />}>Додати користувача</StyledButton>
-            <UsersTable users={users}></UsersTable>
-            <Dialog
+return <div>
+    <h2>Користувачі</h2>
+    <div>
+        <StyledButton onClick={onClickHandler} startIcon={<PersonAddOutlined />}>Додати користувача</StyledButton>
+        <UsersTable users={users}></UsersTable>
+        <Dialog
 
-                open={showDialog}
-                onClose={() => { setShowDialog(false) }}
-                PaperProps={{
-                    component: 'form',
-                    onSubmit: onAddClick,
+            open={showDialog}
+            onClose={() => { setShowDialog(false) }}
+            PaperProps={{
+                component: 'form',
+                onSubmit: onAddClick,
+            }}
+        >
+            <DialogTitle>Додати Користувача</DialogTitle>
+            <DialogContent>
+
+                <TextField margin="dense" id="name" name="name" label="Ім'я" fullWidth variant="outlined" size='small' InputLabelProps={{
+                    shrink: true,
                 }}
-            >
-                <DialogTitle>Додати Користувача</DialogTitle>
-                <DialogContent>
 
-                    <TextField margin="dense" id="name" name="name" label="Ім'я" fullWidth variant="outlined" size='small' InputLabelProps={{
+                />
+                <TextField
+                    margin="dense" id="lastname" name="lastname" label="Прізвище" fullWidth variant="outlined" size='small' InputLabelProps={{
                         shrink: true,
                     }}
 
-                    />
-                    <TextField
-                        margin="dense" id="lastname" name="lastname" label="Прізвище" fullWidth variant="outlined" size='small' InputLabelProps={{
-                            shrink: true,
-                        }}
-
-                    />
-                    <TextField margin="dense" id="email" name="email" label="e-mail" type="email" fullWidth variant="outlined" size='small' InputLabelProps={{
-                        shrink: true,
-                    }}
-                    />
-                    <TextField margin="dense" id="password" name="password" label="Пароль" type="text" fullWidth variant="outlined" size='small' InputLabelProps={{
-                        shrink: true,
-                    }}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <DialogStyledButton onClick={() => { setShowDialog(false) }}>Скасувати</DialogStyledButton>
-                    <DialogStyledButton type='submit' >Додати</DialogStyledButton>
-                </DialogActions>
-            </Dialog>
-        </div>
-    </div >
+                />
+                <TextField margin="dense" id="email" name="email" label="e-mail" type="email" fullWidth variant="outlined" size='small' InputLabelProps={{
+                    shrink: true,
+                }}
+                />
+                <TextField margin="dense" id="password" name="password" label="Пароль" type="text" fullWidth variant="outlined" size='small' InputLabelProps={{
+                    shrink: true,
+                }}
+                />
+            </DialogContent>
+            <DialogActions>
+                <DialogStyledButton onClick={() => { setShowDialog(false) }}>Скасувати</DialogStyledButton>
+                <DialogStyledButton type='submit' >Додати</DialogStyledButton>
+            </DialogActions>
+        </Dialog>
+    </div>
+</div >
 }
 
 export default Users;
