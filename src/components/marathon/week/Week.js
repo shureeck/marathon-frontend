@@ -38,7 +38,7 @@ const AccordionSummary = styled((props) => (
     'p': {
         margin: 'auto'
     },
-    backgroundColor: `rgba(216, 65, 47, 0.75)`,
+    backgroundColor: `rgba(216, 65, 47, 0.7)`,
     color: `#fff`,
     borderRadius: `10px`,
     textAlign: `center`,

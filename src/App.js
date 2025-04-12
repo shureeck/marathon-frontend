@@ -61,7 +61,7 @@ function App() {
     <div className="App">
       <div className="header">
         {signInLink}
-        <h1>BIZZY KITCHEN</h1>
+        <h1><div>Bizzi</div><div><img src='logo.png'></img></div><div>Kitchen</div></h1>
       </div>
       <div className='MenuBar'>
         <Menu items={menu}></Menu>
