@@ -14,12 +14,13 @@ import AssignMarathonToUser from './components/user_assidne_form/AssignMarathonT
 import Archive from './components/archive/Archive';
 import NewMarathon from './components/new_marathon/NewMarathon';
 import Users from './components/users/Users';
+import Localization from './components/localization/Localization';
 
 function App() {
   const [token, setToken] = useToken();
 
   useEffect(() => {
-    document.title = "Bizzi Kitchen"
+    document.title = "Bizzy Kitchen"
     let descMeta = document.querySelector("meta[name='description']")
     descMeta.setAttribute("content", 'Започніть свій шлях до ідеальної фігури з марофоном схуднення! Наш веб-сайт пропонує меню на кожен день, яке допоможе втратити вагу, корисні поради від експертів та спільноту для взаємної підтримки. Приєднуйтеся до нашого марафону схуднення прямо зараз та відкрийте для себе здоровий та активний спосіб життя!')
   }, []);
@@ -61,7 +62,8 @@ function App() {
     <div className="App">
       <div className="header">
         {signInLink}
-        <h1><div>Bizzi</div><div><img src='logo.png'></img></div><div>Kitchen</div></h1>
+        <Localization></Localization>
+        <h1><div>Bizzy</div><div><img src='logo.png'></img></div><div>Kitchen</div></h1>
       </div>
       <div className='MenuBar'>
         <Menu items={menu}></Menu>
