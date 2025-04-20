@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import api from '../../Api';
 import TextField from '@mui/material/TextField';
+import {getTranslation} from '../../Utils'
 
 const textStTyle = {
     width: "100%",
@@ -50,13 +51,13 @@ const NewMarathon = (props) => {
             });
     }
     return (<div className='NewMarathon'>
-        <h2>Новий марафон</h2>
+        <h2>{getTranslation({name:'Новий марафон', pl:'Nowy maraton', en:'New marathon'})}</h2>
         <form>
             <TextField
                 sx={textStTyle}
                 type='text'
                 id="marathon-tittle"
-                label="Назва марафону"
+                label= {getTranslation({name:'Назва марафону', pl:'Nazwa maratonu', en:'Marathon name'})} 
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -70,7 +71,7 @@ const NewMarathon = (props) => {
                 sx={textStTyle}
                 type='text'
                 id="marathon-description"
-                label="Опис"
+                label={getTranslation({name:'Опис', pl:'Opis', en:'Description'})}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -82,8 +83,8 @@ const NewMarathon = (props) => {
                 size='small'
             />
             <div>
-                <Button onClick={onSaveClick} name='Зберегти'></Button>
-                <Button onClick={onCancelClick} name='Скасувати'></Button>
+                <Button onClick={onSaveClick} name={getTranslation({name:'Зберегти', pl:'Zapisz', en:'Save'})}></Button>
+                <Button onClick={onCancelClick} name={getTranslation({name:'Скасувати', pl:'Anulować', en:'Cancel'})}></Button>
             </div>
         </form>
 

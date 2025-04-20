@@ -9,6 +9,7 @@ import Shared from './shared/Shared';
 import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import jwt_decode from 'jwt-decode';
+import { getTranslation } from '../../Utils'
 import { Height, Share } from '@mui/icons-material';
 //import { link } from 'fs';
 
@@ -116,14 +117,15 @@ const Marathon = () => {
         setIsOpen(false);
     }
 
+    const shareText =  getTranslation({ name: "Поділитися", pl: "Współdzielić", en: "Share" })
+
     let shareBtn = "";
     if (typeof token !== 'undefined') {
         const tokenDecoded = jwt_decode(token);
         shareBtn = (tokenDecoded.role === 'Admin')
-            ? <StyledButton onClick={onShareCLick} startIcon={<Share />}>Поділитися</StyledButton>
+            ? <StyledButton onClick={onShareCLick} startIcon={<Share />}>{shareText}</StyledButton>
             : "";
     }
-
 
     let weekSlist = <ProgressIndicator />;
     if (!loader) {

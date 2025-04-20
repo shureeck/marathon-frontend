@@ -3,6 +3,7 @@ import './AddToMarathon.css'
 import InputCom from './InputCom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {getTranslation} from '../../Utils'
 
 const AddToMarathon = () => {
     const navigate = useNavigate();
@@ -114,17 +115,17 @@ const AddToMarathon = () => {
     }, [])
 
     return (<div className='AddToMarathon'>
-        <h2>Додати до меню</h2>
+        <h2>{getTranslation({name:"Додати до меню", pl:"Dodać do menu", en:"Add to menu"})}</h2>
         <form className='AddToMarathon__form'>
-            <InputCom onDataChange={setMarathonId} value={marathoId} label='Марафон' type='combobox' options={marathonList}></InputCom>
-            <InputCom onDataChange={setWeek} value={week} label='Тиждень' type='week'></InputCom>
-            <InputCom onDataChange={setDay} value={day} isMulti label='День' type='day'></InputCom>
-            <InputCom onDataChange={setEatTime} value={eatTime} label='Прийом їжі' options={sceduler} type='combobox'></InputCom>
-            <InputCom onDataChange={setFood} value={food} label='Страва' type='combobox' options={dishes}></InputCom>
-            <InputCom onDataChange={setQuantity} label='Кількість' value={quantity}></InputCom>
+            <InputCom onDataChange={setMarathonId} value={marathoId} label={getTranslation({name:"Марафон", pl:"Maraton", en:"Marathon"})} type='combobox' options={marathonList}></InputCom>
+            <InputCom onDataChange={setWeek} value={week} label={getTranslation({name:'Тиждень', pl:"Tydzień", en:"Week"})} type='week'></InputCom>
+            <InputCom onDataChange={setDay} value={day} isMulti label={getTranslation({name:'День', pl:'Dzień', en:'Day'})} type='day'></InputCom>
+            <InputCom onDataChange={setEatTime} value={eatTime} label={getTranslation({name:'Прийом їжі', pl:'Czas posiłku', en:'Meal time'})} options={sceduler} type='combobox'></InputCom>
+            <InputCom onDataChange={setFood} value={food} label={getTranslation({name:'Страва', pl:'Danie', en:'Dish'})} type='combobox' options={dishes}></InputCom>
+            <InputCom onDataChange={setQuantity} label={getTranslation({name:'Кількість', pl:'Ilość', en:'Quantity'})} value={quantity}></InputCom>
             <div className='AddToMarathon__buttons'>
-                <button type='button' onClick={onSaveClick}>Зберегти</button>
-                <button type='button'>Скасувати</button>
+                <button type='button' onClick={onSaveClick}>{getTranslation({name:'Зберегти', pl:'Zapisz', en:'Save'})} </button>
+                <button type='button'>{getTranslation({name:'Скасувати', pl:'Anulować', en:'Cancel'})}</button>
             </div>
         </form>
     </div>);

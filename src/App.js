@@ -1,4 +1,5 @@
 import './App.css';
+import * as React from 'react';
 import Marathon from './components/marathon/Marathon';
 import AddRecipe from './components/recipe_form/AddRecipe';
 import AddToMarathon from './components/marathon_form/AddToMarathon';
@@ -18,6 +19,7 @@ import Localization from './components/localization/Localization';
 
 function App() {
   const [token, setToken] = useToken();
+  const [loc, setLoc] = React.useState(localStorage.getItem('loc') || 'ua');
 
   useEffect(() => {
     document.title = "Bizzy Kitchen"
@@ -26,9 +28,9 @@ function App() {
   }, []);
 
   const menu = [
-    { name: 'Марафон', path: '/' },
-    { name: 'Всi рецепти', path: '/all' },
-    { name: 'Архів', path: '/archive' }
+    { name: 'Марафон', pl: "Maraton", en: "Marathon", path: '/' },
+    { name: 'Всi рецепти', pl: "Wszystkie przepisy", en: "All recipes", path: '/all' },
+    { name: 'Архів', pl:"Archiwa", en:"Archive", path: '/archive' }
   ];
 
   const routes = [<Route key='cooking' path='/cooking' element={<Recipe />} />,
@@ -44,10 +46,10 @@ function App() {
     const tokenDecoded = jwt_decode(token);
     const user = `${tokenDecoded.firstname}, ${tokenDecoded.lastname}`;
     if (tokenDecoded.role === 'Admin') {
-      menu.push({ name: 'Новий рецепт', path: '/recipe' });
-      menu.push({ name: 'Додати до меню', path: '/menu' });
-      menu.push({ name: 'Новий марафон', path: '/newmarathon' });
-      menu.push({ name: 'Користувачі', path: '/users' });
+      menu.push({ name: 'Новий рецепт',pl:"Nowy przepis", en:"New recipe", path: '/recipe' });
+      menu.push({ name: 'Додати до меню', pl:'Dodać do menu', en:'Add to menu', path: '/menu' });
+      menu.push({ name: 'Новий марафон',pl:'Nowy maraton', en:'New marathon', path: '/newmarathon' });
+      menu.push({ name: 'Користувачі', pl:'Użytkownicy', en:'Users', path: '/users' });
 
       routes.push(<Route key='meny' path="/menu" element={<AddToMarathon />} />);
       routes.push(<Route key='recipe' path="/recipe" element={<AddRecipe />} />);
@@ -62,7 +64,7 @@ function App() {
     <div className="App">
       <div className="header">
         {signInLink}
-        <Localization></Localization>
+        <Localization loc={loc} setLoc={setLoc}></Localization>
         <h1><div>Bizzy</div><div><img src='logo.png'></img></div><div>Kitchen</div></h1>
       </div>
       <div className='MenuBar'>

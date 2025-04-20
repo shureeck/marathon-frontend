@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../Api";
 import TextField from "@mui/material/TextField";
+import {getTranslation} from '../../Utils'
 
 const inputStyle = {
   width: "100%",
@@ -141,11 +142,11 @@ const AddRecipe = () => {
 
   return (
     <div className="AddRecipe">
-      <h2>Новий рецепт</h2>
+      <h2>{getTranslation({name:"Новий рецепт", pl:"Nowy przepis", en:"New recipe"})}</h2>
       <form className="AddRecipe__form">
         <TextField
           id="name"
-          label="Назва страви"
+          label={getTranslation({name:"Назва страви", pl:"Nazwa dania", en:"Name of dish"})} 
           variant="outlined"
           InputLabelProps={{
             shrink: true,
@@ -155,7 +156,7 @@ const AddRecipe = () => {
           value={tittle}
           onChange={onTittleChange}
         />
-        <label className="EditorLabel">Рецепт</label>
+        <label className="EditorLabel">{getTranslation({name:"Рецепт", pl:"Przepis", en:"Recipe"})}</label>
         <div>
           <Editor
             editorClassName="editor"
@@ -166,10 +167,10 @@ const AddRecipe = () => {
         </div>
         <div className="AddRecipe__buttons">
           <button type="button" onClick={onSaveClick}>
-            Зберегти
+         {getTranslation({name:'Зберегти', pl:'Zapisz', en:'Save'})}
           </button>
           <button type="button" onClick={onCancelClick}>
-            Скасувати
+          {getTranslation({name:'Скасувати', pl:'Anulować', en:'Cancel'})}
           </button>
         </div>
       </form>

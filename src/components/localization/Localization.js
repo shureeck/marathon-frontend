@@ -1,10 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { ColorLens, Padding } from '@mui/icons-material';
+
 
 const flags = {
   position: "absolute",
@@ -68,25 +67,14 @@ const enStyle = {
   borderRadius: "30%"
 };
 
-const Localization = () => {
-
-  const [loc, setLoc] = React.useState('ua');
-  const [langLabel, setlangLabel] = React.useState('Мова');
+const Localization = (props) => {
+ // const [loc, setLoc] = React.useState(localStorage.getItem('loc') || 'ua');
+  const [langLabel, setlangLabel] = React.useState(getLanguage(localStorage.getItem('loc')));
 
   const handleChange = (event) => {
-    switch (event.target.value) {
-      case 'ua':
-        setlangLabel('Мова')
-        break;
-      case 'pl':
-        setlangLabel('Język')
-        break;
-      case 'en':
-        setlangLabel('Language')
-        break;
-    }
-    setLoc(event.target.value);
-
+    setlangLabel(getLanguage(event.target.value));
+    localStorage.setItem('loc',event.target.value);
+    props.setLoc(event.target.value);
   };
 
   return (
@@ -95,7 +83,7 @@ const Localization = () => {
       <Select sx={selectStyle}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        value={loc}
+        value={props.loc}
         onChange={handleChange}
       >
         <MenuItem value="ua"><div style={uaStyle} /></MenuItem>
@@ -104,5 +92,20 @@ const Localization = () => {
       </Select>
     </FormControl>
   );
+}
+
+const getLanguage=(loc)=>{
+  switch (loc) {
+    case 'ua':
+     return 'Мова';
+      break;
+    case 'pl':
+      return'Język'
+      break;
+    case 'en': 
+      return'Language';
+  }
+  return 'Мова';
+
 }
 export default Localization;

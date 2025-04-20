@@ -8,6 +8,7 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import {getTranslation} from '../../Utils'
 
 const StyledTable = styled(Table)(({ theme }) => ({
     "& .MuiTableBody-root": {
@@ -71,7 +72,7 @@ const Archive = (props) => {
     });
 
     return <div >
-        <h2>Архів</h2>
+        <h2>{getTranslation({name:"Архів", pl:"Archiwa", en:"Archive"})}</h2>
 
         <StyledTable aria-label="simple table">
             <TableBody >
