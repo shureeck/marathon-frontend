@@ -15,6 +15,8 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import {getTranslation} from '../../Utils'
+
 
 
 
@@ -70,12 +72,12 @@ function Row(props) {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" sx={{ color: "#D8412f", fontWeight: "bold" }} gutterBottom component="div">
-                                Призначені марафоны
+                              {getTranslation({name:'Призначені марафони', pl:'Przypisane maratony', en:'Assigned marathonsers'})} 
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <StyledTableCell>Назва марафону</StyledTableCell>
+                                        <StyledTableCell> {getTranslation({name:'Назва марафону', pl:'Nazwa maratonu', en:'Marathon name'})} </StyledTableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -104,9 +106,9 @@ const UsersTable = (props) => {
             <TableHead>
                 <TableRow sx={{ backgroundColor: "#fbecea" }}>
                     <StyledTableCell />
-                    <StyledTableCell>І'мя / Прізвище </StyledTableCell>
+                    <StyledTableCell>{getTranslation({name:"І'мя / Прізвище", pl:"Imię / Nazwisko", en:"First name / Last name"})} </StyledTableCell>
                     <StyledTableCell align="center">e-mail</StyledTableCell>
-                    <StyledTableCell align="center">Кількість марафонів</StyledTableCell>
+                    <StyledTableCell align="center">{getTranslation({name:"Кількість марафонів", pl:"Liczba maratonów", en:"FNumber of marathons"})}</StyledTableCell>
                 </TableRow>
             </TableHead>
             <TableBody>

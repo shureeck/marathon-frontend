@@ -13,6 +13,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material';
 import { Password, PersonAddOutlined } from '@mui/icons-material';
 import UsersTable from './UsersTable';
+import {getTranslation} from '../../Utils'
 
 const StyledButton = styled(Button)(({ theme }) => ({
     display: "flex",
@@ -106,9 +107,9 @@ const Users = () => {
 }
 
 return <div>
-    <h2>Користувачі</h2>
+    <h2>{getTranslation({name:'Користувачі', pl:'Użytkownicy', en:'Users'})}</h2>
     <div>
-        <StyledButton onClick={onClickHandler} startIcon={<PersonAddOutlined />}>Додати користувача</StyledButton>
+        <StyledButton onClick={onClickHandler} startIcon={<PersonAddOutlined />}>{getTranslation({name:'Додати користувача', pl:'Dodać użytkownika', en:'Add user'})} </StyledButton>
         <UsersTable users={users}></UsersTable>
         <Dialog
 
@@ -119,16 +120,16 @@ return <div>
                 onSubmit: onAddClick,
             }}
         >
-            <DialogTitle>Додати Користувача</DialogTitle>
+            <DialogTitle>{getTranslation({name:"Додати Користувача", pl:'Dodać Użytkownika', en:'Add User'})} </DialogTitle>
             <DialogContent>
 
-                <TextField margin="dense" id="name" name="name" label="Ім'я" fullWidth variant="outlined" size='small' InputLabelProps={{
+                <TextField margin="dense" id="name" name="name" label={getTranslation({name:"Ім'я", pl:'Imię', en:'Name'})} fullWidth variant="outlined" size='small' InputLabelProps={{
                     shrink: true,
                 }}
 
                 />
                 <TextField
-                    margin="dense" id="lastname" name="lastname" label="Прізвище" fullWidth variant="outlined" size='small' InputLabelProps={{
+                    margin="dense" id="lastname" name="lastname" label={getTranslation({name:"Прізвище", pl:'Nazwisko', en:'Last name'})} fullWidth variant="outlined" size='small' InputLabelProps={{
                         shrink: true,
                     }}
 
@@ -137,14 +138,14 @@ return <div>
                     shrink: true,
                 }}
                 />
-                <TextField margin="dense" id="password" name="password" label="Пароль" type="text" fullWidth variant="outlined" size='small' InputLabelProps={{
+                <TextField margin="dense" id="password" name="password" label={getTranslation({name:"Пароль", pl:'Hasło', en:'Password'})} type="text" fullWidth variant="outlined" size='small' InputLabelProps={{
                     shrink: true,
                 }}
                 />
             </DialogContent>
             <DialogActions>
-                <DialogStyledButton onClick={() => { setShowDialog(false) }}>Скасувати</DialogStyledButton>
-                <DialogStyledButton type='submit' >Додати</DialogStyledButton>
+                <DialogStyledButton onClick={() => { setShowDialog(false) }}>{getTranslation({name:'Скасувати', pl:'Anulować', en:'Cancel'})}</DialogStyledButton>
+                <DialogStyledButton type='submit' >{getTranslation({name:"Додати", pl:'Dodać', en:'Add'})} </DialogStyledButton>
             </DialogActions>
         </Dialog>
     </div>
