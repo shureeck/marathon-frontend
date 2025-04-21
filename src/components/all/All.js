@@ -3,6 +3,8 @@ import Grafic from '../marathon/grafic/Grafic';
 import './All.css'
 import api from '../../Api';
 import { useNavigate } from 'react-router-dom';
+import {getTranslation} from '../../Utils'
+
 
 const All = () => {
     const [value, setValue] = useState([]);
@@ -55,7 +57,7 @@ const All = () => {
 
     return (<div className="All__body">
         <div className='All__body__links'>{letters}</div>
-        <div className='All__body__search'><input className='All__body__input' placeholder='Пошук...' onChange={onSourceChageHandler} /></div>
+        <div className='All__body__search'><input className='All__body__input' placeholder={getTranslation({name:'Пошук...', pl:'Szukaj...', en:'Search...'})} onChange={onSourceChageHandler} /></div>
         {links}
     </div>);
 }

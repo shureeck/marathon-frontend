@@ -1,5 +1,6 @@
 import './KebabItems.css';
 import { useNavigate } from 'react-router-dom';
+import {getTranslation} from '../../../Utils'
 
 const KebabItems = (props) => {
 
@@ -29,7 +30,7 @@ const KebabItems = (props) => {
             key={item.path}
             path={item.path}
             onClick={clickHandler}
-            disabled={item.disabled}>{item.name}</button>);
+            disabled={item.disabled}>{getTranslation(item)}</button>);
     });
 
     return <div className='kebab_items'>
