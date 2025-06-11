@@ -46,10 +46,11 @@ const Marathon = () => {
     let errorText = <div className='errorText'>Немає призначеного марафону</div>;
 
     useEffect(() => {
+        const loc = localStorage.getItem("loc");
         const queryParameters = new URLSearchParams(window.location.search);
         const selected = localStorage.getItem('selected');
         const id = queryParameters.get('id') ? queryParameters.get('id') : selected;
-        const param = id ? `?id=${id}` : '';
+        const param = id ? `?id=${id}${loc?`&loc=${loc}`:''}` : `${loc?`?loc=${loc}`:''}`;
 
         api().get(`/${param}`)
             .then(response => {

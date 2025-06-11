@@ -20,8 +20,9 @@ const Recipe = () => {
         const queryParameters = new URLSearchParams(window.location.search);
         if (queryParameters.size > 0) {
             const dish = queryParameters.get('dish');
+            const loc = localStorage.getItem('loc')?`&loc=${localStorage.getItem('loc')}`:'';
             setLine(queryParameters.get('line') ? queryParameters.get('line') : '');
-            api().get(`?dish=${dish}`)
+            api().get(`?dish=${dish}${loc}`)
                 .then(response => {
                     console.log(response.data);
                     setRecipe(response.data);
@@ -34,7 +35,7 @@ const Recipe = () => {
                         navigate('/login');
                     }
                 });
-            api().get(`/dishes?id=${dish}`)
+            api().get(`/dishes?id=${dish}${loc}`)
                 .then(response => {
                     console.log(response.data);
                     const text = Object.values(response.data)
@@ -60,7 +61,7 @@ const Recipe = () => {
                     }
                 });
         }
-    }, [recipe]);
+    }, []);
 
     const marathonsLi = list.map((element) => { return <li key={list.indexOf(element)} >{element}</li> });
 
