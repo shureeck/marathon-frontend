@@ -6,11 +6,16 @@ import Select from '@mui/material/Select';
 
 
 const flags = {
+  display: "inline-block",
   position: "absolute",
   right: "20px",
   top: "20px",
   height: "30px",
   width: "auto",
+  '@media only screen and (max-width: 600px)': {
+    right: "5px",
+    top:"-5px"
+  }
 
 }
 
@@ -24,8 +29,8 @@ const labelStyle = {
   fontWeight: "bold",
   fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   '@media only screen and (max-width: 600px)': {
-    display:"none"
-}
+    // display:"none"
+  }
 }
 
 const selectStyle = {
@@ -68,12 +73,12 @@ const enStyle = {
 };
 
 const Localization = (props) => {
- // const [loc, setLoc] = React.useState(localStorage.getItem('loc') || 'ua');
+  // const [loc, setLoc] = React.useState(localStorage.getItem('loc') || 'ua');
   const [langLabel, setlangLabel] = React.useState(getLanguage(localStorage.getItem('loc')));
 
   const handleChange = (event) => {
     setlangLabel(getLanguage(event.target.value));
-    localStorage.setItem('loc',event.target.value);
+    localStorage.setItem('loc', event.target.value);
     props.setLoc(event.target.value);
   };
 
@@ -94,16 +99,16 @@ const Localization = (props) => {
   );
 }
 
-const getLanguage=(loc)=>{
+const getLanguage = (loc) => {
   switch (loc) {
     case 'ua':
-     return 'Мова';
+      return 'Мова';
       break;
     case 'pl':
-      return'Język'
+      return 'Język'
       break;
-    case 'en': 
-      return'Language';
+    case 'en':
+      return 'Language';
   }
   return 'Мова';
 

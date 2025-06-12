@@ -4,6 +4,7 @@ import './All.css'
 import api from '../../Api';
 import { useNavigate } from 'react-router-dom';
 import {getTranslation} from '../../Utils'
+import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 
 
 const All = () => {
@@ -49,11 +50,12 @@ const All = () => {
     }
 
     const letters = [];
-    const links = data.map((item) => {
+     const tmpLinks = data.map((item) => {
         const leter = item.name.toUpperCase();
         letters.push(<a key={`a_${leter}`} href={`#${leter}`}>{leter}</a>)
-        return <Grafic key={leter} id={leter} data={{ ...item, name: item.name.toUpperCase() }} className='day_grafic'></Grafic>
+       return <Grafic key={leter} id={leter} data={{ ...item, name: item.name.toUpperCase() }} className='day_grafic'></Grafic>
     });
+  const  links = tmpLinks.length===0?<ProgressIndicator/>:tmpLinks;
 
     return (<div className="All__body">
         <div className='All__body__links'>{letters}</div>

@@ -79,7 +79,8 @@ html {
 }
 
 .a__login {
-  /*color: #FE7a47;*/
+ display: flex;
+   /*color: #FE7a47;*/
   color: #FE7a47;;
   text-decoration: none;
   font-weight: bold;
@@ -102,5 +103,10 @@ h2 {
     margin-top: 20px;
     width: 100%;
 
+  }
+  .a__login {
+    position: absolute;
+    left: 5px;
+    top: 5px;
   }
 }

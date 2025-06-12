@@ -6,6 +6,7 @@ import useToken from '../../useToken';
 import jwt_decode from 'jwt-decode';
 import { IconButton } from '@mui/material';
 import { EditOutlined, NotListedLocationOutlined } from '@mui/icons-material';
+import ProgressIndicator from '../../patterns/progress_ind/ProgressIndicator';
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState();
@@ -90,11 +91,13 @@ const Recipe = () => {
             : "";
     }
 
+    let recipeText = recipe? <div dangerouslySetInnerHTML={{ __html: recipe }}></div> :<ProgressIndicator/>
+
     return (<div className='recipe'>
         {editControl}
         <a className='line' href='/'>{line}</a>
         <div><h2>{title}</h2></div>
-        <div dangerouslySetInnerHTML={{ __html: recipe }}></div>
+        {recipeText}
     </div>);
 }
 

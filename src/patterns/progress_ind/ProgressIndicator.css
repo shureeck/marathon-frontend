@@ -2,7 +2,7 @@
     display: flex;
     position: absolute;
     top:50%;
-    left:50%;
+    left:calc(50% - 50px);
     justify-content: center;
   }
   .text{
@@ -10,7 +10,7 @@
     display: flex;
     position: absolute;
     top:calc(50% + 30px);
-    left:50%;
+    left:calc(50% - 60px);
     justify-content: center;
     font-weight: bold;
     color: #d8412f;
